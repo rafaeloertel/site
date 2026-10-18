@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rafael Oertel — Engenheiro de Produção · Planejamento e Gestão de Projetos</title>
+<meta name="description" data-pt="Rafael Oertel — engenheiro de produção, 13 anos em planejamento e gestão de projetos e performance operacional em operações complexas — óleo e gás offshore, logística e transporte. ERP construído do zero sobre o Microsoft 365." data-en="Rafael Oertel — production engineer, 13 years in project planning, management and operational performance across complex operations — offshore oil & gas, logistics and transport. An ERP built from zero on Microsoft 365." content="Rafael Oertel — engenheiro de produção, 13 anos em planejamento e gestão de projetos e performance operacional em operações complexas — óleo e gás offshore, logística e transporte. ERP construído do zero sobre o Microsoft 365.">
+<meta name="author" content="Rafael Oertel">
+<meta name="theme-color" content="#132634">
+<!-- Enquanto o site for rascunho, descomente a linha abaixo para não ser indexado:
+<meta name="robots" content="noindex,nofollow"> -->
+<link rel="canonical" href="https://rafaeloertel.com/">
+<!-- Rede social (ajuste o domínio quando publicar) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rafael Oertel — operação sob controle, do offshore ao ERP">
+<meta property="og:description" content="Planejamento e gestão de projetos, performance operacional. 13 anos, 8 em óleo e gás offshore — e além dele. Registro público do ERP, números e decisões.">
+<meta property="og:url" content="https://rafaeloertel.com/">
+<meta property="og:image" content="https://rafaeloertel.com/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/hero.jpg" as="image" media="(min-width: 761px)">
+<link rel="preload" href="assets/img/hero-mobile.jpg" as="image" media="(max-width: 760px)">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Rafael Oertel","jobTitle":"Engenheiro de Produção · Planejamento e Gestão de Projetos","url":"https://rafaeloertel.com/","sameAs":["https://www.linkedin.com/in/rafael-oertel-16750b40"],"alumniOf":[{"@type":"CollegeOrUniversity","name":"Universidade Federal do Rio de Janeiro"},{"@type":"CollegeOrUniversity","name":"Universidade Gama Filho"}],"knowsAbout":["Project planning & management","Project controls","KPI governance","Offshore logistics","Supply chain","Cost control","OHS compliance","Microsoft 365","SharePoint","Process automation"]}
+</script>
+<style>
+/* ============================================================
+   RAFAEL OERTEL · site pessoal · v0.1 (piloto)
+   Um arquivo. Fontes autohospedadas em assets/fonts. Imagens em assets/img.
+   Paleta e tipografia: inspiração em design systems do setor de energia
+   (verde-musgo, vermelho-energia, azul-ardósia).
+   Marcadores <span class="todo"> = conteúdo a confirmar. Abra ?review no fim
+   do endereço para destacá-los em amarelo.
+   Idiomas: cada texto existe duas vezes, lado a lado — lang="pt-BR" e lang="en".
+   O atributo data-lang em <html> decide qual aparece; #en / #pt no endereço forçam o idioma.
+   ============================================================ */
+@font-face{font-family:"Schibsted Grotesk";src:url("assets/fonts/schibsted-grotesk-latin-wght-normal.woff2") format("woff2");font-weight:400 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Source Sans 3";src:url("assets/fonts/source-sans-3-latin-wght-normal.woff2") format("woff2");font-weight:200 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Source Sans 3";src:url("assets/fonts/source-sans-3-latin-wght-italic.woff2") format("woff2");font-weight:200 900;font-style:italic;font-display:swap}
+
+:root{
+  /* --- cor (tema claro) --- */
+  --bg:#FFFFFF; --bg-2:#F7F7F7; --bg-3:#DEEDEE; --surface:#FFFFFF; --surface-2:#F1F5F6;
+  --line:#DCDCDC; --line-2:#EAECEE;
+  --ink:#243746; --text:#2B3A46; --text-2:#5A6771; --text-3:#5F6B74;
+  --brand:#007079; --brand-deep:#004F55; --brand-soft:#DEEDEE; --brand-contrast:#FFFFFF;
+  --accent:#FF1243; --mist:#D5EAF4; --spruce:#FFE7D6;
+  --band:#132634; --band-2:#1B2F3E; --on-band:#E8EEF1; --on-band-2:#B7C4CC; --band-line:rgba(255,255,255,.14);
+  --ok:#2E8B57; --warn:#E08A00;
+  --shadow:0 12px 32px rgba(19,38,52,.10);
+  /* --- tipo --- */
+  --f-display:"Schibsted Grotesk",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",Roboto,Arial,sans-serif;
+  /* --- ritmo --- */
+  --gutter:clamp(16px,4vw,40px); --container:1200px; --sp-section:clamp(64px,9vw,128px); --radius:6px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1D28; --bg-2:#132634; --bg-3:#1A3040; --surface:#172A38; --surface-2:#1B2F3E;
+    --line:rgba(255,255,255,.13); --line-2:rgba(255,255,255,.08);
+    --ink:#F2F6F8; --text:#DCE5EA; --text-2:#A9B8C2; --text-3:#86959F;
+    --brand:#73B1B5; --brand-deep:#A8CED1; --brand-soft:rgba(115,177,181,.16); --brand-contrast:#0B161F;
+    --accent:#FF4D74; --mist:#1E3A4A; --spruce:#3A2E28;
+    --band:#0B161F; --band-2:#132634; --on-band:#E8EEF1; --on-band-2:#B7C4CC; --band-line:rgba(255,255,255,.14);
+    --ok:#5FBF83; --warn:#F2A43A;
+    --shadow:0 12px 32px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1D28; --bg-2:#132634; --bg-3:#1A3040; --surface:#172A38; --surface-2:#1B2F3E;
+  --line:rgba(255,255,255,.13); --line-2:rgba(255,255,255,.08);
+  --ink:#F2F6F8; --text:#DCE5EA; --text-2:#A9B8C2; --text-3:#86959F;
+  --brand:#73B1B5; --brand-deep:#A8CED1; --brand-soft:rgba(115,177,181,.16); --brand-contrast:#0B161F;
+  --accent:#FF4D74; --mist:#1E3A4A; --spruce:#3A2E28;
+  --band:#0B161F; --band-2:#132634; --on-band:#E8EEF1; --on-band-2:#B7C4CC; --band-line:rgba(255,255,255,.14);
+  --ok:#5FBF83; --warn:#F2A43A;
+  --shadow:0 12px 32px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+
+/* ---------- base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *,*::before,*::after{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--brand);text-decoration:none}
+a:hover{color:var(--brand-deep)}
+h1,h2,h3,h4{font-family:var(--f-display);color:var(--ink);margin:0;text-wrap:balance;letter-spacing:-.015em}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+html[data-lang="en"] [lang="pt-BR"],html[data-lang="pt"] [lang="en"]{display:none!important}
+html[data-lang="en"] tspan[lang="pt-BR"],html[data-lang="pt"] tspan[lang="en"]{display:none}
+.skip{position:absolute;left:-999px;top:8px;background:var(--brand);color:var(--brand-contrast);padding:10px 14px;border-radius:4px;z-index:100}
+.skip:focus{left:12px}
+[id]{scroll-margin-top:calc(72px + 6px + env(safe-area-inset-top,0px))}
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter)}
+.section{padding-block:var(--sp-section)}
+.section-head{display:grid;gap:18px;max-width:820px;margin-bottom:clamp(36px,5vw,64px)}
+.section-head.tight{margin-bottom:0}
+.section.alt{background:var(--bg-2)}
+.eyebrow{font-family:var(--f-display);font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2);display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:22px;height:3px;background:var(--accent);flex:none}
+.h2{font-size:clamp(1.9rem,3.4vw,2.75rem);line-height:1.08;font-weight:700}
+.h3{font-size:1.3rem;line-height:1.25;font-weight:700}
+.lead{font-size:clamp(1.125rem,1.6vw,1.375rem);line-height:1.5;color:var(--text-2);max-width:62ch}
+.prose{max-width:66ch;display:grid;gap:1.1em}
+.muted{color:var(--text-3)}
+.small{font-size:.92rem}
+.tabnum{font-variant-numeric:tabular-nums}
+.todo{border-bottom:1px dotted var(--text-3)}
+body.review .todo{background:#FFF3B0;color:#3D3D3D;border-bottom-color:#B58900}
+.review-badge{display:none;position:fixed;left:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:60;background:#FFF3B0;color:#3D3D3D;font:600 .8rem var(--f-display);padding:8px 12px;border-radius:4px;box-shadow:var(--shadow)}
+body.review .review-badge{display:block}
+
+/* ---------- botões e links ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:600;font-size:.98rem;padding:14px 22px;border-radius:4px;border:1.5px solid transparent;cursor:pointer;transition:transform .15s ease,background .15s ease,border-color .15s ease,color .15s ease;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--brand);color:var(--brand-contrast);border-color:var(--brand)}
+.btn-primary:hover{background:var(--brand-deep);border-color:var(--brand-deep);color:var(--brand-contrast)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
+.btn-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.btn-light:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
+.btn-white{background:#fff;color:#243746;border-color:#fff}
+.btn-white:hover{background:#F1F5F6;color:#243746}
+.btn[aria-disabled="true"]{opacity:.55;cursor:default;pointer-events:none}
+.arrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:600;color:var(--ink)}
+.arrow::after{content:"→";color:var(--accent);transition:transform .15s ease}
+.arrow:hover::after{transform:translateX(4px)}
+.pill{display:inline-block;font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:3px;background:var(--brand-soft);color:var(--brand-deep)}
+.pill-dark{background:rgba(255,255,255,.10);color:var(--on-band)}
+.pill-warn{background:rgba(224,138,0,.14);color:var(--warn)}
+
+/* ---------- cabeçalho ---------- */
+.header{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .25s ease,box-shadow .25s ease;color:#fff}
+.header .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
+.header .right{display:flex;align-items:center;gap:10px}
+.lang{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.45);color:inherit;border-radius:999px;padding:6px 12px 6px 7px;font:700 .8rem var(--f-display);letter-spacing:.06em;cursor:pointer;transition:border-color .15s ease,background .15s ease}
+.lang:hover{border-color:#fff;background:rgba(255,255,255,.14)}
+.lang svg{width:22px;height:16px;border-radius:3px;display:block;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.lang .flag{display:none}
+html[data-lang="pt"] .lang .flag-us{display:block}
+html[data-lang="en"] .lang .flag-br{display:block}
+.header.scrolled .lang{border-color:var(--line);background:var(--bg-2);color:var(--ink)}
+.header.scrolled .lang:hover{border-color:var(--ink);background:var(--bg-2)}
+.brand{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-display);font-weight:700;font-size:1.05rem;color:inherit;letter-spacing:-.01em}
+.brand svg{width:36px;height:36px;flex:none}
+.brand .mark-bg{fill:#fff}.brand .mark-fg{fill:#243746}.brand .mark-dot{fill:#FF1243}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{color:inherit;font-family:var(--f-display);font-weight:500;font-size:.95rem;padding:10px 10px;border-radius:4px;opacity:.9;white-space:nowrap}
+.nav a:hover{opacity:1;background:rgba(255,255,255,.10)}
+.nav a.active{opacity:1;box-shadow:inset 0 -2px 0 var(--accent)}
+.nav .btn{margin-left:8px;padding:10px 16px;font-size:.9rem}
+.header.scrolled{background:var(--surface);color:var(--ink);box-shadow:0 1px 0 var(--line),0 8px 24px rgba(19,38,52,.06)}
+.header.scrolled .brand .mark-bg{fill:var(--ink)}.header.scrolled .brand .mark-fg{fill:var(--surface)}
+.header.scrolled .nav a:hover{background:var(--bg-2)}
+.header.scrolled .nav .btn-light{color:var(--ink);border-color:var(--line)}
+.header.scrolled .nav .btn-light:hover{border-color:var(--ink);background:transparent}
+.menu-btn{display:none;background:transparent;border:1.5px solid rgba(255,255,255,.55);color:inherit;border-radius:4px;padding:8px 10px;font:600 .9rem var(--f-display);cursor:pointer}
+.header.scrolled .menu-btn{border-color:var(--line)}
+@media (max-width:1160px){
+  .menu-btn{display:inline-flex;align-items:center;gap:8px}
+  .header .right{gap:8px}
+  .nav{position:absolute;top:calc(72px + env(safe-area-inset-top,0px));z-index:5;left:var(--gutter);right:var(--gutter);flex-direction:column;align-items:stretch;background:var(--surface);color:var(--ink);padding:10px;border-radius:6px;box-shadow:var(--shadow);border:1px solid var(--line);display:none}
+  .nav.open{display:flex}
+  .nav a{padding:12px 14px;font-size:1.05rem}
+  .nav a:hover{background:var(--bg-2)}
+  .nav .btn{margin:6px 0 0;justify-content:center;color:var(--brand-contrast);background:var(--brand);border-color:var(--brand)}
+  .header.scrolled .nav .btn-light{color:var(--brand-contrast)}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:clamp(560px,82vh,820px);display:flex;align-items:flex-end;color:#fff;isolation:isolate;background:#132634}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 50%;z-index:-2}
+.hero picture{display:contents}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(6,16,26,.55) 0%,rgba(6,16,26,0) 30%),
+  linear-gradient(90deg,rgba(6,16,26,.72) 0%,rgba(6,16,26,.35) 48%,rgba(6,16,26,0) 75%),
+  linear-gradient(0deg,rgba(6,16,26,.85) 0%,rgba(6,16,26,.2) 45%,rgba(6,16,26,0) 70%)}
+.hero .container{padding-block:clamp(120px,14vh,160px) clamp(48px,7vh,80px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px}
+.hero .eyebrow{color:rgba(255,255,255,.82)}
+.hero h1{font-size:clamp(2.4rem,5.6vw,4.5rem);line-height:1.02;font-weight:800;letter-spacing:-.025em;color:#fff;max-width:16ch;margin-top:22px}
+.hero .lead{color:rgba(255,255,255,.86);margin-top:22px;max-width:56ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-cv{margin-top:18px;font-size:.95rem}
+.hero-cv a{color:rgba(255,255,255,.85);border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:1px}
+.hero-cv a:hover{color:#fff;border-bottom-color:#fff}
+.hero-cap{font-size:.82rem;color:rgba(255,255,255,.62);max-width:240px;text-align:right;line-height:1.4}
+@media (max-width:760px){.hero-grid{grid-template-columns:1fr}.hero-cap{text-align:left;max-width:none}
+  .hero{min-height:min(94vh,880px)}.hero-img{object-position:50% 0%}
+  .hero .eyebrow .opt{display:none}.hero .lead{font-size:1.05rem;margin-top:16px}.hero h1{margin-top:16px}
+  .hero::before{background:linear-gradient(180deg,rgba(6,16,26,.35) 0%,rgba(6,16,26,.18) 20%,rgba(6,16,26,.78) 40%,rgba(6,16,26,.95) 100%)}}
+
+/* ---------- números ---------- */
+.numbers{background:var(--bg-2);border-bottom:1px solid var(--line-2)}
+.numbers .container{padding-block:clamp(40px,5vw,64px)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
+.kpi{border-top:3px solid var(--brand);padding-top:18px;display:grid;gap:8px;align-content:start}
+.kpi b{font-family:var(--f-display);font-size:clamp(2.2rem,4vw,3.4rem);line-height:1;font-weight:800;color:var(--ink);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.kpi b em{font-style:normal;color:var(--accent)}
+.kpi b .unit{font-size:.42em;font-weight:600;color:var(--text-2);letter-spacing:0;margin-left:4px;vertical-align:.4em}
+.band .kpi b .unit{color:var(--on-band-2)}
+.kpi span{color:var(--text-2);line-height:1.4;max-width:24ch}
+.numbers .note{margin-top:28px;font-size:.9rem;color:var(--text-3);max-width:80ch}
+@media (max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:360px){.kpis{grid-template-columns:1fr}}
+
+/* ---------- sobre ---------- */
+.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,72px);align-items:start}
+.portrait{position:relative}
+.portrait img{aspect-ratio:3/4;width:100%;object-fit:cover;border-radius:var(--radius)}
+.portrait figcaption{margin-top:10px;font-size:.85rem;color:var(--text-3)}
+.facts{margin-top:22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:6px 18px}
+.facts div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line-2);font-size:.95rem}
+.facts div:last-child{border-bottom:0}
+.facts dt{color:var(--text-3);font-family:var(--f-display);font-weight:600;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding-top:3px}
+.facts dd{margin:0;text-align:right;color:var(--text)}
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px}
+.how article{border-top:1px solid var(--line);padding-top:16px}
+.how h3{font-size:1.05rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.how h3 i{width:10px;height:10px;border-radius:50%;background:var(--brand);display:inline-block;flex:none}
+.how p{color:var(--text-2);font-size:.98rem}
+.skills{margin-top:40px;display:grid;gap:18px}
+.skills h3{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips li{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.9rem;color:var(--text);background:var(--surface)}
+@media (max-width:860px){.about{grid-template-columns:1fr}.portrait{max-width:420px}.how{grid-template-columns:1fr}}
+
+/* ---------- faixa fotográfica (declaração) ---------- */
+.statement{position:relative;isolation:isolate;color:#fff;min-height:clamp(320px,46vh,520px);display:flex;align-items:center;background:#0B3A40}
+.statement img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 55%;z-index:-2}
+@media (max-width:760px){.statement img{object-position:78% 55%}.statement::before{background:linear-gradient(90deg,rgba(11,30,40,.86) 0%,rgba(11,30,40,.62) 70%,rgba(11,30,40,.35) 100%)}}
+.statement::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,30,40,.80) 0%,rgba(11,30,40,.45) 55%,rgba(11,30,40,.10) 100%)}
+.statement .container{padding-block:clamp(56px,8vw,96px)}
+.statement blockquote{margin:0;max-width:26ch;font-family:var(--f-display);font-size:clamp(1.7rem,3.6vw,2.9rem);font-weight:700;line-height:1.12;letter-spacing:-.02em}
+.statement blockquote::before{content:"";display:block;width:36px;height:3px;background:var(--accent);margin-bottom:22px}
+.statement cite{display:block;margin-top:18px;font-style:normal;font-size:.9rem;color:rgba(255,255,255,.7)}
+
+/* ---------- trajetória ---------- */
+.timeline{display:grid;gap:0;max-width:900px}
+.tl{display:grid;grid-template-columns:176px 28px minmax(0,1fr);gap:0 18px;position:relative}
+.tl .when{font-family:var(--f-display);font-weight:700;color:var(--ink);font-size:.95rem;padding-top:4px;font-variant-numeric:tabular-nums}
+.tl .when small{display:block;font-weight:500;color:var(--text-3);font-size:.8rem;margin-top:3px}
+.tl .rail{position:relative}
+.tl .rail::before{content:"";position:absolute;left:13px;top:12px;bottom:-12px;width:2px;background:var(--line)}
+.tl:last-child .rail::before{display:none}
+.tl .rail i{position:absolute;left:7px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--brand)}
+.tl .body{padding-bottom:clamp(28px,4vw,44px)}
+.tl h3{font-size:1.2rem;line-height:1.25}
+.tl .org{color:var(--text-2);margin-top:4px}
+.tl ul{margin-top:12px;display:grid;gap:6px}
+.tl li{position:relative;padding-left:18px;color:var(--text);font-size:.98rem}
+.tl li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--brand)}
+@media (max-width:640px){.tl{grid-template-columns:28px minmax(0,1fr)}.tl .when{grid-column:2;order:-1;margin-bottom:4px;color:var(--brand)}.tl .when small{display:inline;margin-left:8px}.tl .rail{grid-row:1/span 2}}
+
+/* ---------- formação ---------- */
+.field{margin-top:clamp(40px,6vw,64px);padding-top:clamp(28px,4vw,40px);border-top:1px solid var(--line)}
+.field-head{max-width:640px;margin-bottom:22px}
+.field-head h3{font-family:var(--f-display);font-size:1.25rem;margin:0 0 8px}
+.field-head p{margin:0;color:var(--text-3);font-size:.95rem}
+.field-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.field-grid figure{margin:0}
+.field-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line);background:var(--bg-2)}
+.field-grid figure.wide{grid-column:span 2}
+.field-grid figure.wide img{aspect-ratio:2/1;object-position:50% 40%}
+@media (min-width:861px){.field-grid figure.wide-desk{grid-column:span 2}.field-grid figure.wide-desk img{aspect-ratio:2/1}}
+.field-grid figure:nth-child(2) img{object-position:60% 30%}
+.field-grid figure:nth-child(3) img{object-position:55% 60%}
+.field-grid figure:nth-child(4) img{object-position:50% 48%}
+.field-grid figure:nth-child(5) img{object-position:50% 45%}
+.field-grid figure:nth-child(7) img{object-position:40% 55%}
+.field-grid figcaption{margin-top:8px;font-size:.85rem;color:var(--text-3)}
+@media (max-width:860px){.field-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.edu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:clamp(40px,6vw,64px);padding-top:clamp(28px,4vw,40px);border-top:1px solid var(--line)}
+.edu h3{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);font-weight:700;margin-bottom:14px}
+.edu ul{display:grid;gap:12px}
+.edu li{display:grid;gap:2px}
+.edu li b{font-family:var(--f-display);font-weight:700;color:var(--ink);font-size:1rem}
+.edu li span{color:var(--text-2);font-size:.95rem}
+.edu .langs li{grid-template-columns:1fr auto;align-items:baseline}
+.edu .langs li span{font-family:var(--f-display);font-weight:600;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--brand)}
+@media (max-width:860px){.edu{grid-template-columns:1fr}}
+
+/* ---------- capítulo ERP (faixa escura) ---------- */
+.band{background:var(--band);color:var(--on-band);--brand:#73B1B5;--brand-deep:#A8CED1;--brand-soft:rgba(115,177,181,.16);--brand-contrast:#0B161F;--warn:#F2A43A}
+.band h2,.band h3,.band h4{color:#fff}
+.band .eyebrow{color:var(--on-band-2)}
+.band .lead{color:var(--on-band-2)}
+.band .muted{color:var(--on-band-2)}
+.psr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:clamp(28px,4vw,48px)}
+.psr article{border-top:1px solid var(--band-line);padding-top:18px}
+.psr h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--on-band-2);font-weight:700;margin-bottom:10px}
+.psr p{color:var(--on-band);font-size:1rem}
+.band .kpis{margin-top:clamp(32px,5vw,56px)}
+.band .kpi{border-top-color:var(--brand)}
+.band .kpi b{color:#fff}
+.band .kpi span{color:var(--on-band-2)}
+.arch{margin-top:clamp(40px,6vw,72px);border:1px solid var(--band-line);border-radius:var(--radius);background:var(--band-2);padding:clamp(16px,3vw,32px)}
+.arch header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:12px}
+.arch header h3{font-size:1.1rem}
+.arch header span{font-size:.85rem;color:var(--on-band-2)}
+.arch .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:4px}
+.arch .scroller:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.arch svg{display:block;width:100%;min-width:720px;height:auto;font-family:var(--f-body)}
+.arch .box{fill:var(--band);stroke:var(--band-line)}
+.arch .box-main{fill:var(--band);stroke:var(--brand)}
+.arch .t1{fill:#fff;font-family:var(--f-display);font-weight:700;font-size:15px}
+.arch .t2{fill:var(--on-band-2);font-size:12.5px}
+.arch .flow{stroke:var(--brand);stroke-width:2;fill:none}
+.arch .flow-2{stroke:var(--on-band-2);stroke-width:1.5;fill:none;stroke-dasharray:5 5}
+.arch .lbl{fill:var(--on-band-2);font-size:11.5px;font-family:var(--f-display);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.arch .dot{fill:var(--accent)}
+.arch .hint{display:none;font-size:.82rem;color:var(--on-band-2);margin:4px 0 0}
+@media (max-width:760px){.arch .hint{display:block}}
+.arch-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px;font-size:.85rem;color:var(--on-band-2)}
+.arch-legend span{display:inline-flex;align-items:center;gap:8px}
+.arch-legend i{width:22px;height:0;border-top:2px solid var(--brand);display:inline-block}
+.arch-legend i.d{border-top:1.5px dashed var(--on-band-2)}
+
+.modules{margin-top:clamp(40px,6vw,72px)}
+.modules-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px;margin-bottom:20px}
+.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.mod{border:1px solid var(--band-line);border-radius:var(--radius);padding:18px 18px 16px;display:grid;gap:8px;align-content:start;background:rgba(255,255,255,.02);transition:border-color .15s ease,transform .15s ease}
+.mod:hover{border-color:var(--brand);transform:translateY(-2px)}
+.mod .dept{font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand)}
+.mod h4{font-size:1.08rem;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mod p{color:var(--on-band-2);font-size:.95rem;line-height:1.5}
+.mod.wide{grid-column:1/-1;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:28px;align-items:start;background:rgba(255,255,255,.04)}
+.mod.wide .dept{grid-column:1}
+.mod.wide h4{grid-column:1}
+.mod.wide p{grid-column:2;grid-row:1/span 2}
+@media (max-width:760px){.mod.wide{grid-template-columns:1fr}.mod.wide p{grid-column:1;grid-row:auto}}
+@media (max-width:900px){.mgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.psr{grid-template-columns:1fr}}
+@media (max-width:560px){.mgrid{grid-template-columns:1fr}}
+
+.shots{margin-top:clamp(40px,6vw,72px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.shots figure{margin:0}
+.shots img{border-radius:var(--radius);border:1px solid var(--band-line);aspect-ratio:16/10;object-fit:cover;width:100%}
+.shots figcaption{margin-top:10px;font-size:.88rem;color:var(--on-band-2)}
+@media (max-width:760px){.shots{grid-template-columns:1fr}}
+
+.decisions{margin-top:clamp(40px,6vw,72px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,56px);align-items:start}
+.decisions ol{margin:0;padding:0;list-style:none;counter-reset:d;display:grid;gap:0}
+.decisions li{counter-increment:d;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding:18px 0;border-top:1px solid var(--band-line)}
+.decisions li:last-child{border-bottom:1px solid var(--band-line)}
+.decisions li::before{content:counter(d,decimal-leading-zero);font-family:var(--f-display);font-weight:800;font-size:1.4rem;color:var(--brand);line-height:1.1}
+.decisions h4{font-size:1.05rem;margin-bottom:4px}
+.decisions .dec-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-top:14px}
+.decisions .dec-intro{margin-top:14px}
+.shots-note{margin-top:10px}
+.decisions p{color:var(--on-band-2);font-size:.97rem}
+@media (max-width:860px){.decisions{grid-template-columns:1fr}}
+
+.media{margin-top:clamp(40px,6vw,72px);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:14px}
+.media-card{border:1px solid var(--band-line);border-radius:var(--radius);overflow:hidden;background:var(--band-2);display:grid;grid-template-rows:auto 1fr}
+.media-card .frame{aspect-ratio:16/9;background:linear-gradient(135deg,#0E2A36,#1B4B55);display:grid;place-items:center;position:relative}
+.media-card .frame.demo{aspect-ratio:16/9;background:linear-gradient(135deg,#10222E,#243746)}
+.play{width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.5);display:grid;place-items:center}
+.play::after{content:"";border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent #fff;margin-left:5px}
+.media-card .txt{padding:18px 20px 20px;display:grid;gap:8px;align-content:start}
+.media-card h3{font-size:1.1rem;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.media-card p{color:var(--on-band-2);font-size:.95rem}
+.frame .ghost{position:absolute;inset:16px;border:1px dashed rgba(255,255,255,.18);border-radius:4px;display:grid;grid-template-columns:120px 1fr;gap:10px;padding:10px;opacity:.9}
+.frame .ghost i{display:block;background:rgba(255,255,255,.08);border-radius:3px}
+.frame .ghost .side{display:grid;gap:8px;align-content:start}
+.frame .ghost .side i{height:12px}
+.frame .ghost .main{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;align-content:start}
+.frame .ghost .main i{height:44px}
+.frame .ghost .main i.w{grid-column:1/-1;height:70px}
+@media (max-width:860px){.media{grid-template-columns:1fr}}
+
+/* ---------- registro de marcos ---------- */
+.log{display:grid;gap:0;max-width:960px}
+.log article{display:grid;grid-template-columns:130px minmax(0,1fr);gap:20px;padding:26px 0;border-top:1px solid var(--line)}
+.log article:last-child{border-bottom:1px solid var(--line)}
+.log time{font-family:var(--f-display);font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;font-size:.95rem}
+.log time small{display:block;font-weight:500;color:var(--text-3);font-size:.8rem;margin-top:2px}
+.log h3{font-size:1.15rem;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.log p{color:var(--text-2);margin-top:8px;max-width:70ch}
+.log .next{background:var(--bg-2);padding-inline:min(20px,var(--gutter));margin-inline:calc(min(20px,var(--gutter)) * -1);border-radius:var(--radius)}
+.log .next h3::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+@media (max-width:640px){.log article{grid-template-columns:1fr;gap:6px}}
+
+/* ---------- documentos ---------- */
+.docs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.doc{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface);transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+.doc:hover{transform:translateY(-3px);border-color:var(--brand);box-shadow:var(--shadow)}
+.doc img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.doc .txt{padding:16px 18px 18px;display:grid;gap:8px}
+.doc h3{font-size:1.02rem}
+.doc p{color:var(--text-2);font-size:.93rem}
+@media (max-width:1100px){.docs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:860px){.docs{grid-template-columns:1fr}.doc{display:grid;grid-template-columns:200px 1fr}.doc img{aspect-ratio:auto;height:100%}}
+@media (max-width:520px){.doc{grid-template-columns:1fr}.doc img{aspect-ratio:4/3;height:auto}}
+.doc.placeholder{border-style:dashed;background:var(--bg-2)}
+.doc.placeholder .txt{padding:20px 22px}
+.doc.placeholder h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+@media (max-width:860px){.doc.placeholder{grid-template-columns:1fr}}
+
+/* ---------- contato ---------- */
+.contact{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(32px,5vw,72px);align-items:start}
+.contact-list{display:grid;gap:0;border-top:1px solid var(--line)}
+.contact-list div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.contact-list dd{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.contact-list dt{font-family:var(--f-display);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.contact-list dd{margin:0;font-size:1.05rem;overflow-wrap:anywhere}
+.copy{background:transparent;border:1px solid var(--line);color:var(--ink);font:600 .82rem var(--f-display);padding:7px 10px;border-radius:4px;cursor:pointer}
+.copy:hover{border-color:var(--ink)}
+.copy[data-done="1"]{border-color:var(--ok);color:var(--ok)}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+@media (max-width:480px){.contact-list div{grid-template-columns:1fr;gap:6px}}
+
+/* ---------- fale comigo ---------- */
+.reach{margin-top:clamp(40px,6vw,64px);padding-top:clamp(28px,4vw,40px);border-top:1px solid var(--line)}
+.reach-head{max-width:62ch;margin-bottom:22px}
+.reach-head h3{font-size:1.3rem;margin-bottom:8px}
+.reach-head p{color:var(--text-2);margin:0}
+.f-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 24px}
+.f-wide{grid-column:1/-1}
+.f-field{display:grid;gap:7px}
+.f-field label{font-family:var(--f-display);font-weight:600;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3)}
+.f-field input,.f-field textarea{font:1rem/1.4 var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;width:100%;box-sizing:border-box;resize:vertical}
+.f-field input:focus,.f-field textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.f-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:24px}
+.f-note{margin:0;color:var(--text-3);font-size:.92rem}
+@media (max-width:640px){.f-grid{grid-template-columns:1fr}}
+
+/* ---------- voltar ao topo ---------- */
+.totop{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:1.1rem;box-shadow:var(--shadow);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:var(--brand);color:var(--brand-contrast)}
+body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+
+/* ---------- rodapé ---------- */
+.footer{background:var(--band);color:var(--on-band-2);padding-block:40px calc(40px + env(safe-area-inset-bottom,0px));font-size:.92rem}
+.footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 32px;align-items:center}
+.footer a{color:var(--on-band)}
+.footer .brand{color:#fff}
+.footer .fine{margin-top:22px;max-width:80ch;line-height:1.55}
+.footer .fnav{display:flex;gap:18px;flex-wrap:wrap}
+.footer .brand .mark-bg{fill:#fff}
+
+/* ---------- impressão: vira um currículo estendido em preto no branco ---------- */
+@media print{
+  :root{--bg:#fff;--bg-2:#fff;--surface:#fff;--ink:#000;--text:#111;--text-2:#333;--text-3:#555;--line:#bbb;--line-2:#ddd;--brand:#005a61;--band:#fff;--band-2:#fff;--on-band:#111;--on-band-2:#333;--band-line:#bbb}
+  html[data-lang="en"] [lang="pt-BR"],html[data-lang="pt"] [lang="en"]{display:none!important}
+  .header,.skip,.menu-btn,.lang,.review-badge,.totop,.hero picture,.hero::before,.hero-cta,.statement,.shots,.media,.copy,.arch .hint,.doc img,.portrait img,.field,.reach{display:none!important}
+  body{background:#fff;color:#111;font-size:11pt}
+  .hero{min-height:0;background:#fff;color:#000;align-items:start}
+  .hero .container{padding-block:24px 8px}
+  .hero h1,.hero .lead,.hero .eyebrow,.hero-cap,.hero-cv a{color:#000}
+  .hero h1{font-size:28pt}
+  .section,.numbers .container{padding-block:18px}
+  .band{background:#fff;color:#111}
+  .band h2,.band h3,.band h4,.kpi b{color:#000}
+  .mod,.doc,.media-card,.arch,.facts{border-color:#bbb;background:#fff}
+  .kpis{grid-template-columns:repeat(4,1fr)}
+  .docs{grid-template-columns:repeat(2,1fr)}
+  a{color:#000;text-decoration:none}
+  .contact-list a[href^="http"]::after{content:""}
+  .tl,.log article,.mod,.doc,.how article,.skills > div,.kpi,.edu > div{break-inside:avoid}
+  .section-head,.eyebrow,h2,h3{break-after:avoid}
+  .portrait figcaption{display:none}
+  .arch svg{min-width:0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#sobre"><span lang="pt-BR">Pular para o conteúdo</span><span lang="en">Skip to content</span></a>
+
+<!-- ============================ CABEÇALHO ============================ -->
+<header class="header" id="topo">
+  <div class="container bar">
+    <a class="brand" href="#inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><rect class="mark-bg" x="0" y="0" width="40" height="40" rx="4"/><text class="mark-fg" x="20" y="27" text-anchor="middle" font-family="Schibsted Grotesk, Arial, sans-serif" font-weight="800" font-size="19" letter-spacing="-1">RO</text><circle class="mark-dot" cx="33" cy="8" r="3"/></svg><span>Rafael Oertel</span></a>
+    <div class="right">
+      <nav class="nav" id="nav" aria-label="Seções">
+        <a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
+        <a href="#trajetoria"><span lang="pt-BR">Trajetória</span><span lang="en">Experience</span></a>
+        <a href="#erp"><span lang="pt-BR">Projeto ERP</span><span lang="en">ERP project</span></a>
+        <a href="#registro"><span lang="pt-BR">Registro</span><span lang="en">Log</span></a>
+        <a href="#documentos"><span lang="pt-BR">Documentos</span><span lang="en">Documents</span></a>
+        <a href="#indicadores"><span lang="pt-BR">Indicadores</span><span lang="en">Indicators</span></a>
+        <a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
+        <a class="btn btn-light" lang="pt-BR" href="assets/cv/Rafael_Oertel_CV_PT.pdf">Currículo (PDF)</a>
+        <a class="btn btn-light" lang="en" href="assets/cv/Rafael_Oertel_CV_EN.pdf">Résumé (PDF)</a>
+      </nav>
+      <!-- Alternador de idioma: mostra a bandeira do idioma para o qual a página vai mudar -->
+      <button class="lang" id="langBtn" type="button" title="Switch to English" aria-label="EN · Switch to English"><svg class="flag flag-us" viewBox="0 0 22 16" aria-hidden="true"><defs><clipPath id="fus"><rect width="22" height="16" rx="2"/></clipPath></defs><g clip-path="url(#fus)"><rect width="22" height="16" fill="#fff"/><g fill="#B22234"><rect y="0" width="22" height="1.23"/><rect y="2.46" width="22" height="1.23"/><rect y="4.92" width="22" height="1.23"/><rect y="7.38" width="22" height="1.23"/><rect y="9.85" width="22" height="1.23"/><rect y="12.31" width="22" height="1.23"/><rect y="14.77" width="22" height="1.23"/></g><rect width="9.4" height="8.6" fill="#3C3B6E"/><g fill="#fff"><circle cx="1.8" cy="1.8" r=".55"/><circle cx="4.7" cy="1.8" r=".55"/><circle cx="7.6" cy="1.8" r=".55"/><circle cx="3.2" cy="3.6" r=".55"/><circle cx="6.1" cy="3.6" r=".55"/><circle cx="1.8" cy="5.4" r=".55"/><circle cx="4.7" cy="5.4" r=".55"/><circle cx="7.6" cy="5.4" r=".55"/><circle cx="3.2" cy="7.2" r=".55"/><circle cx="6.1" cy="7.2" r=".55"/></g></g></svg><svg class="flag flag-br" viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" rx="2" fill="#009C3B"/><path d="M11 2.3 19.4 8 11 13.7 2.6 8z" fill="#FFDF00"/><circle cx="11" cy="8" r="3.1" fill="#002776"/><path d="M8.2 7.4c1.9-.6 3.9-.3 5.7.8" stroke="#fff" stroke-width=".7" fill="none"/></svg><span class="code" id="langCode">EN</span></button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav"><span lang="pt-BR">Menu</span><span lang="en">Menu</span> <span aria-hidden="true">☰</span></button>
+    </div>
+  </div>
+</header>
+<main>
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="inicio" aria-label="Apresentação">
+  <!-- hero.jpg (1932×1086) desktop · hero-mobile.jpg (1000×1500) celular. Foto do autor: içamento ao pôr do sol, Bacia de Campos. -->
+  <picture>
+    <source media="(max-width:760px)" srcset="assets/img/hero-mobile.jpg">
+    <img class="hero-img" src="assets/img/hero.jpg" alt="" width="1932" height="1086" fetchpriority="high">
+  </picture>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow"><span lang="pt-BR">Engenheiro de produção · planejamento e gestão de projetos<span class="opt"> · performance operacional</span></span><span lang="en">Production engineer · project planning &amp; management<span class="opt"> · operational performance</span></span></p>
+        <h1><span lang="pt-BR">Operação sob controle, do offshore ao ERP.</span><span lang="en">Operations under control, from offshore to ERP.</span></h1>
+        <p class="lead"><span lang="pt-BR">Treze anos em planejamento e gestão de projetos e performance operacional — oito deles em óleo e gás offshore, meu setor mais forte, mas não o único. Desde 2025, aplico a mesma disciplina à transformação digital de uma transportadora regional: governança, compliance e automação entregues de ponta a ponta.</span><span lang="en">Thirteen years in project planning, management and operational performance — eight of them in offshore oil and gas, my strongest sector, though not the only one. Since 2025 I apply the same discipline to the digital transformation of a regional transport company: governance, compliance and automation delivered end to end.</span></p>
+        <div class="hero-cta">
+          <a class="btn btn-white" href="#erp"><span lang="pt-BR">Ver o projeto ERP</span><span lang="en">See the ERP project</span></a>
+          <a class="btn btn-light" href="#contato"><span lang="pt-BR">Falar comigo</span><span lang="en">Get in touch</span></a>
+        </div>
+        <p class="hero-cv"><a lang="pt-BR" href="assets/cv/Rafael_Oertel_CV_PT.pdf">Currículo em PDF ↓</a><a lang="en" href="assets/cv/Rafael_Oertel_CV_EN.pdf">Résumé as PDF ↓</a></p>
+      </div>
+      <p class="hero-cap"><span lang="pt-BR">Içamento de carga ao pôr do sol, Bacia de Campos (RJ).<br>Foto do autor.</span><span lang="en">Cargo lift at sunset, Campos Basin (RJ).<br>Author’s photo.</span></p>
+    </div>
+  </div>
+</section>
+<!-- ============================ NÚMEROS ============================ -->
+<section class="numbers" id="numeros" aria-label="Números">
+  <div class="container">
+    <div class="kpis">
+      <div class="kpi"><b>13</b><span lang="pt-BR">anos em controle de projetos e performance operacional</span><span lang="en">years in project controls and operational performance</span></div>
+      <div class="kpi"><b>8</b><span lang="pt-BR">anos em óleo e gás offshore, na Equinor (via Accenture) e na SBM Offshore</span><span lang="en">years in offshore oil &amp; gas, with Equinor (via Accenture) and SBM Offshore</span></div>
+      <div class="kpi"><b>60</b><span lang="pt-BR">pessoas levadas do papel e das planilhas ao Microsoft 365 em 8 meses</span><span lang="en">people moved from paper and spreadsheets to Microsoft 365 in 8 months</span></div>
+      <div class="kpi"><b>76</b><span lang="pt-BR">itens de compliance em SST, em 7 normas regulamentadoras, construídos do zero</span><span lang="en">OHS compliance items across 7 regulatory standards, built from zero</span></div>
+    </div>
+    <p class="note"><span lang="pt-BR">Números do currículo, setembro de 2026. Os indicadores do ERP estão na seção do projeto.</span><span lang="en">Figures from the résumé, September 2026. ERP indicators are in the project section.</span></p>
+  </div>
+</section>
+<!-- ============================ SOBRE ============================ -->
+<section class="section" id="sobre">
+  <div class="container">
+    <div class="about">
+      <div>
+        <figure class="portrait">
+          <!-- portrait.jpg (900×1200, 3:4). Retrato profissional de estúdio. -->
+          <img src="assets/img/portrait.jpg" alt="Retrato profissional de Rafael Oertel, de camisa jeans e braços cruzados, sorrindo" data-alt-en="Professional portrait of Rafael Oertel in a denim shirt, arms crossed, smiling" width="900" height="1200" loading="lazy">
+          <figcaption><span lang="pt-BR">Rafael Oertel · engenheiro de produção</span><span lang="en">Rafael Oertel · production engineer</span></figcaption>
+        </figure>
+        <dl class="facts">
+          <div><dt><span lang="pt-BR">Base</span><span lang="en">Based in</span></dt><dd><span lang="pt-BR">Niterói, RJ · híbrido com Macaé</span><span lang="en">Niterói, Brazil · hybrid with Macaé</span></dd></div>
+          <div><dt><span lang="pt-BR">Formação</span><span lang="en">Education</span></dt><dd><span lang="pt-BR">Eng. de Produção · pós em Eng. de Petróleo (UFRJ)</span><span lang="en">Production Eng. · post-grad. in Petroleum Eng. (UFRJ)</span></dd></div>
+          <div><dt><span lang="pt-BR">Setores</span><span lang="en">Sectors</span></dt><dd><span lang="pt-BR">Óleo e gás offshore · transporte e logística · consultoria corporativa</span><span lang="en">Offshore oil &amp; gas · transport &amp; logistics · corporate consulting</span></dd></div>
+          <div><dt><span lang="pt-BR">Certificações</span><span lang="en">Certifications</span></dt><dd>CBSP · HUET</dd></div>
+          <div><dt><span lang="pt-BR">Idiomas</span><span lang="en">Languages</span></dt><dd><span lang="pt-BR">Português · Inglês fluente · Alemão e Italiano básicos</span><span lang="en">Portuguese · fluent English · basic German and Italian</span></dd></div>
+        </dl>
+      </div>
+      <div>
+        <div class="section-head">
+          <p class="eyebrow"><span lang="pt-BR">Sobre</span><span lang="en">About</span></p>
+          <h2 class="h2"><span lang="pt-BR">Gosto de ver a operação funcionar de ponta a ponta: do convés à tela de quem decide.</span><span lang="en">I like to see an operation work end to end: from the deck to the decision-maker's screen.</span></h2>
+        </div>
+        <div class="prose">
+          <p lang="pt-BR">Sou engenheiro de produção com 13 anos em controle de projetos e performance operacional, 8 deles em óleo e gás offshore: coordenei o suprimento offshore da Equinor no Brasil (via Accenture) e cuidei de KPIs de manutenção e performance de ativos em FPSOs na SBM Offshore. Minha base foi formada em ambientes regulados: governança de indicadores, controle de custos, continuidade da cadeia de suprimentos e compliance em SAP.</p><p lang="en">I am a production engineer with 13 years in project controls and operational performance, 8 of them in offshore oil and gas: I coordinated Equinor's offshore supply operations in Brazil (via Accenture) and looked after maintenance KPIs and asset performance on FPSOs at SBM Offshore. My foundation was built in regulated environments: KPI governance, cost control, supply chain continuity and SAP-based compliance.</p>
+          <p lang="pt-BR">Desde 2025 aplico essa disciplina à transformação digital de uma transportadora de passageiros no Norte Fluminense. Em 8 meses, a operação saiu do papel e de planilhas legadas para o Microsoft 365, com o SharePoint estruturado como um ERP leve para operações, financeiro, RH e frota, além de compliance em SST e atendimento com triagem por IA.</p><p lang="en">Since 2025 I have applied that discipline to the digital transformation of a passenger transport company in northern Rio de Janeiro state. In 8 months the operation moved from paper and legacy spreadsheets to Microsoft 365, with SharePoint structured as a lightweight ERP for operations, finance, HR and fleet, plus OHS compliance and AI-triaged customer service.</p>
+          <p lang="pt-BR">Trabalho com assistência de inteligência artificial e digo isso abertamente. O levantamento dos processos, a arquitetura, os testes e a implantação são decisões minhas. A IA acelera a execução; o método é meu.</p><p lang="en">I work with AI assistance and say so openly. Process discovery, architecture, testing and rollout are my decisions. AI speeds up execution; the method is mine.</p>
+          <p lang="pt-BR">Minha base mais sólida é o óleo e gás offshore, mas o método é o mesmo em qualquer operação complexa: mapear o processo, medir com KPIs, documentar a decisão e melhorar com quem executa. A transportadora é a prova de que isso roda fora do offshore. Busco posições sêniores em planejamento e gestão de projetos, excelência de processos e governança operacional, em indústrias reguladas dentro e fora do óleo e gás.</p><p lang="en">My strongest base is offshore oil and gas, but the method is the same in any complex operation: map the process, measure it with KPIs, document the decision and improve it with the people who run it. The transport company is proof that it works beyond offshore. I am open to senior roles in project planning and management, process excellence and operational governance, in regulated industries within and beyond oil and gas.</p>
+        </div>
+
+        <div class="how" role="group" aria-label="Como trabalho · How I work">
+          <article><h3><i></i><span lang="pt-BR">Mapear</span><span lang="en">Map</span></h3><p lang="pt-BR">Entender o processo como ele acontece, com quem executa, antes de tocar em qualquer ferramenta.</p><p lang="en">Understand the process as it really happens, with the people who run it, before touching any tool.</p></article>
+          <article><h3><i></i><span lang="pt-BR">Construir</span><span lang="en">Build</span></h3><p lang="pt-BR">Preferir o que a empresa já paga. Sem servidor próprio, sem licença nova, com os dados na casa do cliente.</p><p lang="en">Prefer what the company already pays for. No own server, no new license, data kept in-house.</p></article>
+          <article><h3><i></i><span lang="pt-BR">Medir</span><span lang="en">Measure</span></h3><p lang="pt-BR">Indicador antes e depois, versão registrada e teste em produção com quem usa.</p><p lang="en">A metric before and after, a recorded version and a production test with the people who use it.</p></article>
+        </div>
+
+        <div class="skills">
+          <div><h3><span lang="pt-BR">Planejamento e governança</span><span lang="en">Planning and governance</span></h3><ul class="chips"><li lang="pt-BR">Planejamento &amp; Gestão de Projetos</li><li lang="en">Project planning &amp; management</li><li lang="pt-BR">Controle de Projetos &amp; KPIs</li><li lang="en">Project controls &amp; KPI governance</li><li lang="pt-BR">Controle de Custos &amp; Orçamento</li><li lang="en">Cost control &amp; budgeting</li><li lang="pt-BR">Governança de Fornecedores</li><li lang="en">Supplier governance</li><li lang="pt-BR">Performance de Ativos &amp; Manutenção</li><li lang="en">Asset &amp; maintenance performance</li><li lang="pt-BR">Compliance Regulatório &amp; SST</li><li lang="en">Regulatory &amp; OHS compliance</li></ul></div>
+          <div><h3><span lang="pt-BR">Operações e processos</span><span lang="en">Operations and processes</span></h3><ul class="chips"><li lang="pt-BR">Logística Offshore &amp; Supply Chain</li><li lang="en">Offshore logistics &amp; supply chain</li><li lang="pt-BR">Desenho &amp; Otimização de Processos</li><li lang="en">Process design &amp; optimization</li><li lang="pt-BR">Planejamento de Embarcações &amp; Cargas</li><li lang="en">Vessel &amp; cargo planning</li><li lang="pt-BR">Cargas Perigosas (IMDG)</li><li lang="en">Dangerous goods (IMDG)</li><li lang="pt-BR">Transformação Digital (M365)</li><li lang="en">Digital transformation (M365)</li></ul></div>
+          <div><h3><span lang="pt-BR">Ferramentas e sistemas</span><span lang="en">Tools and systems</span></h3><ul class="chips"><li lang="pt-BR">SAP</li><li lang="en">SAP</li><li lang="pt-BR">Power BI</li><li lang="en">Power BI</li><li lang="pt-BR">Microsoft Excel</li><li lang="en">Microsoft Excel</li><li lang="pt-BR">Primavera</li><li lang="en">Primavera</li><li lang="pt-BR">Microsoft Project</li><li lang="en">Microsoft Project</li><li lang="pt-BR">SharePoint · Power Automate · Planner</li><li lang="en">SharePoint · Power Automate · Planner</li><li lang="pt-BR">Microsoft Graph</li><li lang="en">Microsoft Graph</li><li lang="pt-BR">Make</li><li lang="en">Make</li><li lang="pt-BR">Supabase</li><li lang="en">Supabase</li><li lang="pt-BR">Twilio &amp; API do WhatsApp</li><li lang="en">Twilio &amp; WhatsApp API</li><li lang="pt-BR">IA Aplicada (Análise &amp; Classificação)</li><li lang="en">Applied AI (analysis &amp; classification)</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DECLARAÇÃO (foto) ============================ -->
+<section class="statement" aria-label="Declaração">
+  <!-- offshore-day.jpg (1600×1000). Exercício de homem ao mar com FRB, foto do autor. -->
+  <img src="assets/img/offshore-day.jpg" alt="" width="1600" height="1000" loading="lazy">
+  <div class="container">
+    <blockquote><span lang="pt-BR">O que aprendi no mar, aplico no escritório: procedimento claro, registro de tudo e ninguém trabalhando no escuro.</span><span lang="en">What I learned offshore, I apply onshore: clear procedures, everything on record and nobody working in the dark.</span></blockquote>
+    <cite>Rafael Oertel</cite>
+  </div>
+</section>
+<!-- ============================ TRAJETÓRIA ============================ -->
+<section class="section" id="trajetoria">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span lang="pt-BR">Trajetória</span><span lang="en">Experience</span></p>
+      <h2 class="h2"><span lang="pt-BR">Do suprimento offshore à gestão de sistemas.</span><span lang="en">From offshore supply to systems management.</span></h2>
+      <p class="lead"><span lang="pt-BR">Treze anos em quatro casas: consultoria, a conta Equinor, a SBM Offshore e, hoje, uma transportadora regional em transformação digital.</span><span lang="en">Thirteen years across four houses: consulting, the Equinor account, SBM Offshore and, today, a regional transport company in digital transformation.</span></p>
+    </div>
+    <div class="timeline">
+      <article class="tl">
+        <div class="when"><span lang="pt-BR">set 2025 — hoje</span><span lang="en">Sep 2025 — present</span><small><span lang="pt-BR">1 ano</span><span lang="en">1 yr</span></small></div>
+        <div class="rail"><i></i></div>
+        <div class="body">
+          <h3><span lang="pt-BR">Líder de Operações e Compliance</span><span lang="en">Operations &amp; Compliance Lead</span></h3>
+          <p class="org"><span lang="pt-BR">Nova Macabu · transporte de passageiros (13 ônibus, 60 funcionários) · Macaé, RJ · autônomo, híbrido</span><span lang="en">Nova Macabu · passenger transport (13 buses, 60 employees) · Macaé, RJ · self-employed, hybrid</span></p>
+          <ul><li lang="pt-BR">Implantei o primeiro ambiente Microsoft 365 da empresa em 8 meses e estruturei o SharePoint como ERP leve (sites por área, bibliotecas, fluxos de dados), substituindo controles manuais em operações, financeiro, RH e frota.</li><li lang="en">Deployed the company's first Microsoft 365 environment in 8 months and structured SharePoint as a lightweight ERP (department sites, libraries, data flows), replacing manual controls across operations, finance, HR and fleet.</li><li lang="pt-BR">Desenhei o primeiro sistema estruturado de Contas a Pagar, com aprovações automáticas e alertas de vencimento, dando à liderança visibilidade em tempo real dos compromissos de caixa.</li><li lang="en">Designed the first structured Accounts Payable system, with automated approvals and overdue alerts, giving leadership real-time visibility of cash commitments.</li><li lang="pt-BR">Construí uma plataforma multiusuário de gestão de dívidas (PWA + Supabase, acesso por perfil, trilha de auditoria) que consolida 9 carteiras de passivos: planejado × realizado, curva ABC, renegociação e simulação de caixa.</li><li lang="en">Built a multi-user debt-management platform (PWA + Supabase, role-based access, audit trail) consolidating 9 liability portfolios: planned vs. actual, ABC analysis, renegotiation and cash-flow simulation.</li><li lang="pt-BR">Criei do zero um framework de compliance em SST com 76 itens em 7 normas (NR-1/6/10/17/20/24/26), priorizado por severidade de risco e prazo legal, e conduzi uma revisão de compliance assistida por IA em mais de 10 anos de comunicações corporativas.</li><li lang="en">Built a 76-item OHS compliance framework from zero across 7 standards (NR-1/6/10/17/20/24/26), prioritized by risk severity and legal deadline, and led an AI-assisted compliance review of 10+ years of corporate communications.</li><li lang="pt-BR">Unifiquei 3 canais de atendimento (WhatsApp via Twilio, site e e-mail) em uma base única de chamados no SharePoint, com classificação por IA, protocolos únicos e painéis com KPIs em tempo real (tempo de primeira resposta, SLA, envelhecimento do backlog).</li><li lang="en">Unified 3 customer-service channels (WhatsApp via Twilio, web and e-mail) into one SharePoint ticket base, with AI classification, unique protocols and dashboards with live KPIs (first-response time, SLA, backlog aging).</li></ul>
+        </div>
+      </article>
+      <article class="tl">
+        <div class="when"><span lang="pt-BR">fev 2024 — ago 2025</span><span lang="en">Feb 2024 — Aug 2025</span><small><span lang="pt-BR">1 ano · 7 meses</span><span lang="en">1 yr · 7 mos</span></small></div>
+        <div class="rail"><i></i></div>
+        <div class="body">
+          <h3><span lang="pt-BR">Especialista em Gestão de Projetos</span><span lang="en">Project Management Specialist</span></h3>
+          <p class="org"><span lang="pt-BR">SBM Offshore · operações de FPSO, Brasil · Rio de Janeiro · tempo integral, híbrido</span><span lang="en">SBM Offshore · FPSO operations, Brazil · Rio de Janeiro · full-time, hybrid</span></p>
+          <ul><li lang="pt-BR">Construí e mantive KPIs de disponibilidade, confiabilidade e manutenção para as lideranças de engenharia e operações.</li><li lang="en">Built and maintained uptime, reliability and maintenance KPIs supporting decisions by engineering and operations leadership.</li><li lang="pt-BR">Estruturei o acompanhamento de manutenção preventiva e corretiva por governança de KPIs, melhorando a priorização do backlog e a disponibilidade dos ativos.</li><li lang="en">Structured preventive and corrective maintenance tracking through KPI governance, improving backlog prioritisation and asset availability.</li><li lang="pt-BR">Alinhei engenharia, manutenção e suprimentos para manter ordens de serviço críticas e materiais dentro das janelas operacionais, garantindo continuidade da produção.</li><li lang="en">Aligned engineering, maintenance and procurement to keep critical work orders and materials within operational windows, ensuring continuity of production.</li><li lang="pt-BR">Padronizei modelos e relatórios de controle de projetos, elevando a integridade dos dados e a confiabilidade dos reportes executivos.</li><li lang="en">Standardized project-control templates and reporting, improving data integrity and the reliability of executive reports.</li></ul>
+        </div>
+      </article>
+      <article class="tl">
+        <div class="when"><span lang="pt-BR">fev 2019 — jan 2024</span><span lang="en">Feb 2019 — Jan 2024</span><small><span lang="pt-BR">5 anos</span><span lang="en">5 yrs</span></small></div>
+        <div class="rail"><i></i></div>
+        <div class="body">
+          <h3><span lang="pt-BR">Coordenador de Operações Logísticas Offshore</span><span lang="en">Offshore Logistics Operations Coordinator</span></h3>
+          <p class="org"><span lang="pt-BR">Accenture, a serviço da Equinor · suprimento offshore da Equinor Brasil · Rio de Janeiro · tempo integral, presencial</span><span lang="en">Accenture, on behalf of Equinor · Equinor Brazil offshore supply chain · Rio de Janeiro · full-time, on-site</span></p>
+          <ul><li lang="pt-BR">Liderei a governança integrada de planejamento, gestão de materiais e monitoramento de performance das operações de suprimento, reportando à gerência de logística e operações da Equinor.</li><li lang="en">Led integrated governance across planning, material management and performance monitoring of supply operations, reporting to Equinor's logistics and operations management.</li><li lang="pt-BR">Geri o fluxo de materiais de ponta a ponta, alinhado aos cronogramas de produção e perfuração, mantendo equipamentos críticos e consumíveis no prazo nas unidades offshore.</li><li lang="en">Managed end-to-end material flow aligned with production and drilling schedules, keeping critical equipment and consumables on time to offshore units.</li><li lang="pt-BR">Reduzi custos logísticos otimizando a programação de embarcações e reestruturando o fluxo de materiais, com mais consistência de OTIF e transparência de custos.</li><li lang="en">Reduced logistics costs by optimising vessel scheduling and restructuring material flows, improving OTIF consistency and cost transparency.</li><li lang="pt-BR">Fortaleci os controles de compliance em SAP e a governança de fornecedores; supervisionei operações de convés e carga, incluindo cargas perigosas (IMDG).</li><li lang="en">Strengthened SAP-based compliance controls and supplier governance; supervised deck and cargo operations, including dangerous goods (IMDG).</li></ul>
+        </div>
+      </article>
+      <article class="tl">
+        <div class="when"><span lang="pt-BR">nov 2017 — jan 2019</span><span lang="en">Nov 2017 — Jan 2019</span><small><span lang="pt-BR">1 ano · 3 meses</span><span lang="en">1 yr · 3 mos</span></small></div>
+        <div class="rail"><i></i></div>
+        <div class="body">
+          <h3><span lang="pt-BR">Analista Marítimo</span><span lang="en">Marine Analyst</span></h3>
+          <p class="org"><span lang="pt-BR">Accenture, a serviço da Equinor · Rio de Janeiro · promovido a coordenador em 15 meses</span><span lang="en">Accenture, on behalf of Equinor · Rio de Janeiro · promoted to coordinator within 15 months</span></p>
+          <ul><li lang="pt-BR">Apoiei a programação de embarcações de suprimento e os manifestos de carga (convés, granéis, cargas perigosas) entre a base onshore e as unidades offshore, alinhados às demandas de produção e perfuração.</li><li lang="en">Supported supply-vessel schedules and cargo manifests (deck cargo, bulk, dangerous goods) between the onshore base and offshore units, aligned with production and drilling demands.</li><li lang="pt-BR">Construí relatórios de KPIs logísticos (utilização de embarcações, OTIF, backlog de cargas) em Excel e Power BI e processei transações de materiais e cargas no SAP com acurácia total.</li><li lang="en">Built logistics KPI reports (vessel utilization, OTIF, cargo backlog) in Excel and Power BI and handled material and cargo transactions in SAP with full data accuracy.</li></ul>
+        </div>
+      </article>
+      <article class="tl">
+        <div class="when"><span lang="pt-BR">out 2012 — out 2016</span><span lang="en">Oct 2012 — Oct 2016</span><small><span lang="pt-BR">4 anos · 1 mês</span><span lang="en">4 yrs · 1 mo</span></small></div>
+        <div class="rail"><i></i></div>
+        <div class="body">
+          <h3><span lang="pt-BR">Analista de Gestão de Projetos</span><span lang="en">Project Management Analyst</span></h3>
+          <p class="org"><span lang="pt-BR">Afferolab · educação corporativa e consultoria · Rio de Janeiro · tempo integral, presencial</span><span lang="en">Afferolab · corporate education &amp; consulting · Rio de Janeiro · full-time, on-site</span></p>
+          <ul><li lang="pt-BR">Desenvolvi e monitorei KPIs de performance financeira, produtividade e serviços terceirizados em um portfólio de projetos, incluindo a conta VALE (mais de 40% do portfólio).</li><li lang="en">Developed and monitored KPIs for financial performance, productivity and outsourced services across a project portfolio, including the VALE account (over 40% of the portfolio).</li><li lang="pt-BR">Geri orçamentos e despesas reembolsáveis como interface financeira entre Comercial, Logística e Suprimentos; substituí planilhas manuais por reportes mensais consolidados e dashboards para a liderança.</li><li lang="en">Managed project budgets and reimbursable expenses as the financial interface between Sales, Logistics and Procurement; replaced manual spreadsheets with consolidated monthly reporting and dashboards for leadership.</li><li lang="pt-BR">Responsável pelos frameworks de análise financeira das iniciativas mensais de redução de custos, incluindo redução de 2% nas despesas reembolsáveis.</li><li lang="en">Owned the financial-analysis frameworks behind recurring monthly cost-reduction initiatives, including a 2% reduction in reimbursable expenses.</li></ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="field">
+      <div class="field-head">
+        <h3 id="field-h"><span lang="pt-BR">Em campo</span><span lang="en">In the field</span></h3>
+        <p lang="pt-BR">Fotos do autor em embarques entre 2015 e 2024. Rostos de colegas e marcas foram desfocados.</p><p lang="en">Author’s photos from offshore hitches between 2015 and 2024. Colleagues’ faces and brand marks have been blurred.</p>
+      </div>
+      <div class="field-grid">
+        <figure class="wide"><img src="assets/img/field-frb-platform.jpg" alt="Rafael a bordo do barco de resgate rápido, com capacete, colete e uma plataforma ao fundo" data-alt-en="Rafael aboard the fast rescue boat, in hard hat and life vest, with a platform in the background" width="1024" height="768" loading="lazy"><figcaption><span lang="pt-BR">A bordo do FRB, barco de resgate rápido, a caminho da plataforma.</span><span lang="en">Aboard the FRB, the fast rescue boat, on the way to the platform.</span></figcaption></figure>
+        <figure><img src="assets/img/field-deck.jpg" alt="Rafael de macacão e capacete no convés, com embarcação de apoio ao fundo" data-alt-en="Rafael in coveralls and hard hat on deck, supply vessel in the background" width="1200" height="1600" loading="lazy"><figcaption><span lang="pt-BR">Operação de convés com embarcação de apoio ao lado.</span><span lang="en">Deck operation with a supply vessel alongside.</span></figcaption></figure>
+        <figure><img src="assets/img/field-drill.jpg" alt="Equipe de brigada em simulado de resgate no convés" data-alt-en="Emergency team during a rescue drill on deck" width="1600" height="900" loading="lazy"><figcaption><span lang="pt-BR">Simulado de resgate da brigada de emergência.</span><span lang="en">Emergency team rescue drill.</span></figcaption></figure>
+        <figure><img src="assets/img/field-frb.jpg" alt="Lançamento do barco de resgate rápido pelo turco" data-alt-en="Fast rescue boat being launched from the davit" width="1080" height="1920" loading="lazy"><figcaption><span lang="pt-BR">Lançamento do FRB, barco de resgate rápido.</span><span lang="en">FRB launch, the fast rescue boat.</span></figcaption></figure>
+        <figure><img src="assets/img/field-crane.jpg" alt="Guindaste da plataforma sobre embarcação de apoio, com o sol no mar" data-alt-en="Platform crane over a supply vessel, sun on the sea" width="1200" height="2130" loading="lazy"><figcaption><span lang="pt-BR">Guindaste sobre a embarcação de apoio.</span><span lang="en">Crane over the supply vessel.</span></figcaption></figure>
+        <figure class="wide-desk"><img src="assets/img/field-pipes.jpg" alt="Convés de carga visto de cima, com tubos, cestas e contêineres" data-alt-en="Cargo deck seen from above, with pipes, baskets and containers" width="1600" height="901" loading="lazy"><figcaption><span lang="pt-BR">Convés de carga: tubulares, cestas e contêineres.</span><span lang="en">Cargo deck: tubulars, baskets and containers.</span></figcaption></figure>
+        <figure><img src="assets/img/field-lift.jpg" alt="Guindaste passando um contêiner para a embarcação de apoio" data-alt-en="Crane handing a container over to the supply vessel" width="855" height="1306" loading="lazy"><figcaption><span lang="pt-BR">Transferência de carga para a embarcação de apoio.</span><span lang="en">Cargo transfer to the supply vessel.</span></figcaption></figure>
+      </div>
+    </div>
+
+    <div class="edu">
+      <div><h3><span lang="pt-BR">Formação</span><span lang="en">Education</span></h3><ul>
+        <li><b><span lang="pt-BR">Pós-graduação em Engenharia de Petróleo (Perfuração)</span><span lang="en">Post-graduate in Petroleum Engineering (Drilling Operations)</span></b><span>Universidade Federal do Rio de Janeiro (UFRJ) · 2015 – 2016</span></li>
+        <li><b><span lang="pt-BR">Bacharelado em Engenharia de Produção</span><span lang="en">B.Eng., Production Engineering</span></b><span>Universidade Gama Filho · 2008 – 2014</span></li>
+      </ul></div>
+      <div><h3><span lang="pt-BR">Certificações</span><span lang="en">Certifications</span></h3><ul>
+        <li><b>CBSP</b><span><span lang="pt-BR">Segurança Básica de Plataforma · válido até jun 2029</span><span lang="en">Offshore Basic Safety Training · valid to Jun 2029</span></span></li>
+        <li><b>HUET</b><span><span lang="pt-BR">Escape de Helicóptero Submerso · válido até mai 2028</span><span lang="en">Helicopter Underwater Escape Training · valid to May 2028</span></span></li>
+      </ul></div>
+      <div><h3><span lang="pt-BR">Idiomas</span><span lang="en">Languages</span></h3><ul class="langs">
+        <li><b><span lang="pt-BR">Português</span><span lang="en">Portuguese</span></b><span><span lang="pt-BR">nativo</span><span lang="en">native</span></span></li>
+        <li><b><span lang="pt-BR">Inglês</span><span lang="en">English</span></b><span><span lang="pt-BR">fluente</span><span lang="en">fluent</span></span></li>
+        <li><b><span lang="pt-BR">Alemão</span><span lang="en">German</span></b><span><span lang="pt-BR">básico</span><span lang="en">basic</span></span></li>
+        <li><b><span lang="pt-BR">Italiano</span><span lang="en">Italian</span></b><span><span lang="pt-BR">básico</span><span lang="en">basic</span></span></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+<!-- ============================ PROJETO ERP ============================ -->
+<section class="section band" id="erp">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span lang="pt-BR">Projeto em destaque · 2025–2026</span><span lang="en">Featured project · 2025–2026</span></p>
+      <h2 class="h2"><span lang="pt-BR">ERP NMB: uma transportadora inteira em um sistema, sem comprar sistema.</span><span lang="en">ERP NMB: a whole transport company in one system, without buying a system.</span></h2>
+      <p class="lead"><span lang="pt-BR">Nove módulos, quatro aplicativos legados migrados e um portal para quem não tem conta corporativa. Tudo construído sobre o Microsoft 365 que a empresa já pagava, publicado como uma página estática e mantido por uma pessoa.</span><span lang="en">Nine modules, four legacy apps migrated and a portal for people without a corporate account. All built on the Microsoft 365 the company already paid for, published as a static page and maintained by one person.</span></p>
+    </div>
+
+    <div class="psr">
+      <article><h3><span lang="pt-BR">Problema</span><span lang="en">Problem</span></h3><p lang="pt-BR">Papel, planilhas soltas em vários computadores e quatro aplicativos com senhas próprias: escala, diesel, infrações e atendimento. Dados em lugares diferentes, sem histórico confiável e sem visão do que estava vencendo.</p><p lang="en">Paper, loose spreadsheets on several computers and four apps with their own passwords: shift schedule, diesel, violations and customer service. Data in different places, no reliable history and no view of what was falling due.</p></article>
+      <article><h3><span lang="pt-BR">Solução</span><span lang="en">Solution</span></h3><p lang="pt-BR">Um único sistema com login pela conta da empresa. Cada departamento vê só os seus módulos. As listas do SharePoint são a fonte da verdade e a automação entra apenas onde algo precisa rodar sem usuário.</p><p lang="en">One system with company-account sign-in. Each department sees only its own modules. SharePoint lists are the source of truth and automation is used only where something must run without a user.</p></article>
+      <article><h3><span lang="pt-BR">Resultado</span><span lang="en">Result</span></h3><p lang="pt-BR">Contas fixas geradas em um clique, vencidos marcados sozinhos, aviso de infração no WhatsApp do motorista, escala projetada para o mês seguinte e um registro de cada versão publicada.</p><p lang="en">Recurring bills generated in one click, overdue items flagged on their own, violation alerts on the driver's WhatsApp, next month's shift schedule projected automatically and a record of every published version.</p></article>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><b>9</b><span lang="pt-BR">módulos de gestão em um único sistema, por departamento</span><span lang="en">management modules in one system, by department</span></div>
+      <div class="kpi"><b>4<em>→</em>1</b><span lang="pt-BR">aplicativos separados migrados para dentro do ERP, sem perder registros</span><span lang="en">separate apps migrated into the ERP without losing a record</span></div>
+      <div class="kpi"><b>+300</b><span lang="pt-BR">contas a pagar importadas e controladas por competência</span><span lang="en">payables imported and controlled by accounting period</span></div>
+      <div class="kpi"><b>R$&nbsp;0</b><span lang="pt-BR">de software adicional: roda sobre o Microsoft 365 que a empresa já tinha</span><span lang="en">in additional software: it runs on the Microsoft 365 the company already had</span></div>
+    </div>
+
+    <!-- Arquitetura -->
+    <div class="arch">
+      <header><h3><span lang="pt-BR">Arquitetura em uma imagem</span><span lang="en">The architecture in one picture</span></h3><span><span lang="pt-BR">Sem servidor próprio. Sem banco de dados fora do Microsoft 365.</span><span lang="en">No own server. No database outside Microsoft 365.</span></span></header>
+      <div class="scroller" tabindex="0" aria-label="Diagrama de arquitetura (rolável) · Architecture diagram (scrollable)">
+      <svg viewBox="0 0 1000 400" role="img" aria-labelledby="archTitle archDesc">
+        <title id="archTitle">Arquitetura do ERP NMB · ERP NMB architecture</title>
+        <desc id="archDesc">O navegador carrega a página no GitHub Pages, autentica no Microsoft Entra ID, lê e grava direto no SharePoint pelo Microsoft Graph. O Make cuida apenas do WhatsApp, do e-mail e do portal dos funcionários.</desc>
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+        <g>
+          <rect class="box-main" x="30" y="60" width="200" height="86" rx="6"/>
+          <text class="t1" x="50" y="94"><tspan lang="pt-BR">Navegador</tspan><tspan lang="en">Browser</tspan></text>
+          <text class="t2" x="50" y="114">GitHub Pages · HTML + JS</text>
+          <text class="t2" x="50" y="131"><tspan lang="pt-BR">1 arquivo, versão a versão</tspan><tspan lang="en">1 file, version by version</tspan></text>
+          <rect class="box-main" x="290" y="60" width="200" height="86" rx="6"/>
+          <text class="t1" x="310" y="94"><tspan lang="pt-BR">Login corporativo</tspan><tspan lang="en">Corporate sign-in</tspan></text>
+          <text class="t2" x="310" y="114">Microsoft Entra ID</text>
+          <text class="t2" x="310" y="131"><tspan lang="pt-BR">grupos = permissões</tspan><tspan lang="en">groups = permissions</tspan></text>
+          <rect class="box-main" x="550" y="60" width="180" height="86" rx="6"/>
+          <text class="t1" x="570" y="94">Microsoft Graph</text>
+          <text class="t2" x="570" y="114"><tspan lang="pt-BR">leitura e escrita</tspan><tspan lang="en">read and write</tspan></text>
+          <text class="t2" x="570" y="131"><tspan lang="pt-BR">direto do navegador</tspan><tspan lang="en">straight from the browser</tspan></text>
+          <rect class="box-main" x="790" y="60" width="180" height="86" rx="6"/>
+          <text class="t1" x="810" y="94">SharePoint</text>
+          <text class="t2" x="810" y="114"><tspan lang="pt-BR">9 sites, 1 por área</tspan><tspan lang="en">9 sites, 1 per department</tspan></text>
+          <text class="t2" x="810" y="131"><tspan lang="pt-BR">listas = fonte da verdade</tspan><tspan lang="en">lists = source of truth</tspan></text>
+          <g style="color:var(--brand)">
+            <path class="flow" d="M230 103H288" marker-end="url(#ah)"/>
+            <path class="flow" d="M490 103H548" marker-end="url(#ah)"/>
+            <path class="flow" d="M730 103H788" marker-end="url(#ah)"/>
+          </g>
+          <text class="lbl" x="236" y="92"><tspan lang="pt-BR">entra</tspan><tspan lang="en">sign in</tspan></text>
+          <text class="lbl" x="497" y="92">token</text>
+          <text class="lbl" x="732" y="92"><tspan lang="pt-BR">dados</tspan><tspan lang="en">data</tspan></text>
+        </g>
+        <g>
+          <text class="lbl" x="30" y="222"><tspan lang="pt-BR">só o que precisa rodar sem usuário</tspan><tspan lang="en">only what must run without a user</tspan></text>
+          <rect class="box" x="290" y="240" width="200" height="86" rx="6"/>
+          <text class="t1" x="310" y="274">Make</text>
+          <text class="t2" x="310" y="294"><tspan lang="pt-BR">automações agendadas</tspan><tspan lang="en">scheduled automations</tspan></text>
+          <text class="t2" x="310" y="311"><tspan lang="pt-BR">e webhooks</tspan><tspan lang="en">and webhooks</tspan></text>
+          <rect class="box" x="550" y="196" width="420" height="50" rx="6"/>
+          <circle class="dot" cx="572" cy="221" r="4"/>
+          <text class="t1" x="586" y="226">WhatsApp</text>
+          <text class="t2" x="690" y="226"><tspan lang="pt-BR">aviso de infração ao motorista</tspan><tspan lang="en">violation alert to the driver</tspan></text>
+          <rect class="box" x="550" y="258" width="420" height="50" rx="6"/>
+          <circle class="dot" cx="572" cy="283" r="4"/>
+          <text class="t1" x="586" y="288">E-mail</text>
+          <text class="t2" x="690" y="288"><tspan lang="pt-BR">captura e resposta do SAC</tspan><tspan lang="en">customer-service capture and reply</tspan></text>
+          <rect class="box" x="550" y="320" width="420" height="50" rx="6"/>
+          <circle class="dot" cx="572" cy="345" r="4"/>
+          <text class="t1" x="586" y="350"><tspan lang="pt-BR">Portal dos funcionários</tspan><tspan lang="en">Employee portal</tspan></text>
+          <text class="t2" x="760" y="350"><tspan lang="pt-BR">para quem não tem conta M365</tspan><tspan lang="en">for people without an M365 account</tspan></text>
+          <g style="color:var(--on-band-2)">
+            <path class="flow-2" d="M490 283H548" marker-end="url(#ah)"/>
+            <path class="flow-2" d="M490 270 C520 270 520 221 548 221" marker-end="url(#ah)"/>
+            <path class="flow-2" d="M490 296 C520 296 520 345 548 345" marker-end="url(#ah)"/>
+            <path class="flow-2" d="M390 240V190 C390 170 410 160 430 160 H860 C875 160 880 155 880 146" marker-end="url(#ah)"/>
+          </g>
+          <text class="lbl" x="560" y="178"><tspan lang="pt-BR">lê e grava nas mesmas listas</tspan><tspan lang="en">reads and writes the same lists</tspan></text>
+        </g>
+      </svg>
+      </div>
+      <p class="hint"><span lang="pt-BR">Deslize o diagrama para o lado →</span><span lang="en">Swipe the diagram sideways →</span></p>
+      <div class="arch-legend"><span><i></i><span lang="pt-BR">fluxo principal, sem custo por uso</span><span lang="en">main flow, no per-use cost</span></span><span><i class="d"></i><span lang="pt-BR">automação, medida em operações</span><span lang="en">automation, metered in operations</span></span></div>
+    </div>
+
+    <!-- Módulos -->
+    <div class="modules">
+      <div class="modules-head">
+        <h3 class="h3"><span lang="pt-BR">Módulos em produção</span><span lang="en">Modules in production</span></h3>
+        <span class="muted small"><span lang="pt-BR">Setembro de 2026 · 7 ativos, 2 em construção, 1 plataforma associada</span><span lang="en">September 2026 · 7 live, 2 in progress, 1 companion platform</span></span>
+      </div>
+      <div class="mgrid"><article class="mod"><span class="dept"><span lang="pt-BR">Financeiro</span><span lang="en">Finance</span></span><h4><span lang="pt-BR">Contas a Pagar</span><span lang="en">Accounts Payable</span></h4><p lang="pt-BR">Vencido marcado automaticamente, contas fixas por competência e vínculo direto com o fornecedor.</p><p lang="en">Overdue items flagged automatically, recurring bills by accounting period and a direct link to the supplier.</p></article><article class="mod"><span class="dept"><span lang="pt-BR">Financeiro</span><span lang="en">Finance</span></span><h4><span lang="pt-BR">Obrigações</span><span lang="en">Recurring obligations</span></h4><p lang="pt-BR">Cadastro das contas recorrentes. “Gerar mês” cria as contas do período em um clique, sem duplicar.</p><p lang="en">Register of recurring bills. “Generate month” creates the period's bills in one click, without duplicates.</p></article><article class="mod"><span class="dept"><span lang="pt-BR">Terceiros</span><span lang="en">Third parties</span></span><h4><span lang="pt-BR">Fornecedores</span><span lang="en">Suppliers</span></h4><p lang="pt-BR">Cadastro único por CNPJ ou CPF, chave que impede duplicidade e alimenta as contas.</p><p lang="en">Single register keyed by tax ID, which prevents duplicates and feeds the bills.</p></article><article class="mod"><span class="dept"><span lang="pt-BR">Operacional</span><span lang="en">Operations</span></span><h4><span lang="pt-BR">Controle de Diesel</span><span lang="en">Diesel Control</span></h4><p lang="pt-BR">Abastecimentos, recebimentos e previsão de autonomia do tanque, com gráfico e exportação.</p><p lang="en">Fuelling, deliveries and tank autonomy forecast, with chart and export.</p></article><article class="mod"><span class="dept"><span lang="pt-BR">Operacional</span><span lang="en">Operations</span></span><h4><span lang="pt-BR">Painel de Infrações</span><span lang="en">Violations Dashboard</span></h4><p lang="pt-BR">Ocorrências por gravidade, aviso ao motorista pela API do WhatsApp Business e mural mensal pronto para imprimir.</p><p lang="en">Incidents by severity, driver alerts through the WhatsApp Business API and a monthly print-ready board.</p></article><article class="mod"><span class="dept"><span lang="pt-BR">Diretoria</span><span lang="en">Management</span></span><h4><span lang="pt-BR">SAC</span><span lang="en">Customer Service</span></h4><p lang="pt-BR">Três canais (WhatsApp, site e e-mail) em uma base única de chamados, com classificação por IA, protocolo e resposta ao passageiro pelo painel.</p><p lang="en">Three channels (WhatsApp, web and e-mail) in one ticket base, with AI classification, protocol numbers and replies to the passenger from the dashboard.</p></article><article class="mod"><span class="dept"><span lang="pt-BR">Financeiro</span><span lang="en">Finance</span></span><h4><span lang="pt-BR">Escala da Agência</span><span lang="en">Agency Shift Schedule</span></h4><p lang="pt-BR">Calendário de turnos, projeção automática do mês seguinte, histórico e portal para os funcionários.</p><p lang="en">Shift calendar, automatic projection of the next month, history and a portal for employees.</p></article><article class="mod"><span class="dept"><span lang="pt-BR">Financeiro</span><span lang="en">Finance</span></span><h4><span lang="pt-BR">LevBom</span><span lang="en">LevBom (ticketing)</span> <span class="pill pill-warn"><span lang="pt-BR">em construção</span><span lang="en">in progress</span></span></h4><p lang="pt-BR">Fechamento da bilhetagem: talões, caixa diário e conferência mensal.</p><p lang="en">Ticketing close: ticket books, daily cash and monthly reconciliation.</p></article><article class="mod"><span class="dept"><span lang="pt-BR">Recursos Humanos</span><span lang="en">Human Resources</span></span><h4><span lang="pt-BR">Banco de Talentos</span><span lang="en">Talent Pool</span> <span class="pill pill-warn"><span lang="pt-BR">em construção</span><span lang="en">in progress</span></span></h4><p lang="pt-BR">Currículos recebidos e candidatos por CPF, com histórico de contato.</p><p lang="en">Incoming résumés and candidates keyed by tax ID, with contact history.</p></article><article class="mod wide"><span class="dept"><span lang="pt-BR">Diretoria · plataforma associada</span><span lang="en">Management · companion platform</span></span><h4><span lang="pt-BR">Gestão de Dívidas</span><span lang="en">Debt Management</span> <span class="pill pill-dark"><span lang="pt-BR">PWA + Supabase</span><span lang="en">PWA + Supabase</span></span></h4><p lang="pt-BR">Aplicação própria (PWA + Supabase) ligada ao menu do ERP: nove carteiras de passivos em uma fonte única, com planejado × realizado, curva ABC, modelagem de renegociação e simulação de caixa para aquisição de ativos.</p><p lang="en">Stand-alone application (PWA + Supabase) linked from the ERP menu: nine liability portfolios in one source of truth, with planned vs. actual, ABC analysis, renegotiation modelling and cash-flow simulation for asset purchases.</p></article></div>
+    </div>
+
+    <!-- Telas -->
+    <div class="shots">
+      <!-- SLOT: erp-home.png / erp-diesel.png / erp-escala.png (1600×1000). Capturas reais com dados fictícios. -->
+      <figure><img src="assets/img/erp-home.png" alt="Tela inicial do ERP, com departamentos e favoritos" data-alt-en="ERP home screen with departments and favourites" width="1600" height="1000" loading="lazy"><figcaption><span lang="pt-BR">Início por departamento. Cada pessoa vê só o que o grupo dela permite.</span><span lang="en">Home by department. Each person sees only what their group allows.</span></figcaption></figure>
+      <figure><img src="assets/img/erp-diesel.png" alt="Painel de controle de diesel com previsão de autonomia" data-alt-en="Diesel control dashboard with autonomy forecast" width="1600" height="1000" loading="lazy"><figcaption><span lang="pt-BR">Controle de Diesel: estoque, consumo e previsão de autonomia.</span><span lang="en">Diesel Control: stock, consumption and autonomy forecast.</span></figcaption></figure>
+      <figure><img src="assets/img/erp-escala.png" alt="Calendário da escala com turnos por pessoa" data-alt-en="Shift-schedule calendar with shifts per person" width="1600" height="1000" loading="lazy"><figcaption><span lang="pt-BR">Escala da Agência: turnos por semana e mês projetado automaticamente.</span><span lang="en">Agency Shift Schedule: shifts by week and next month projected automatically.</span></figcaption></figure>
+    </div>
+    <p class="muted small shots-note"><span lang="pt-BR">Telas ilustrativas. As capturas reais, com dados fictícios, entram junto com a demo navegável.</span><span lang="en">Illustrative screens. Real captures with fictitious data arrive together with the clickable demo.</span></p>
+
+    <!-- Decisões -->
+    <div class="decisions">
+      <div>
+        <p class="eyebrow"><span lang="pt-BR">Três decisões</span><span lang="en">Three decisions</span></p>
+        <h3 class="h2 dec-title"><span lang="pt-BR">O que fez diferença</span><span lang="en">What made the difference</span></h3>
+        <p class="muted dec-intro"><span lang="pt-BR">Um projeto assim é feito de escolhas pequenas. Estas três explicam o custo baixo, a velocidade e o fato de ninguém ter ficado de fora.</span><span lang="en">A project like this is made of small choices. These three explain the low cost, the speed and the fact that nobody was left out.</span></p>
+      </div>
+      <ol>
+        <li><div><h4><span lang="pt-BR">Ler direto do SharePoint, sem passar pela automação</span><span lang="en">Read straight from SharePoint, not through the automation</span></h4><p lang="pt-BR">Os painéis liam os dados por uma automação paga por operação. Passaram a ler direto pelo Microsoft Graph: tela mais rápida, custo zero por atualização e a automação sobrou só para o que precisa rodar sem usuário.</p><p lang="en">The dashboards used to read data through an automation billed per operation. They now read directly through Microsoft Graph: faster screens, zero cost per refresh, and automation left only for what must run without a user.</p></div></li>
+        <li><div><h4><span lang="pt-BR">Um portal para quem não tem conta corporativa</span><span lang="en">A portal for people without a corporate account</span></h4><p lang="pt-BR">Os funcionários da agência não têm conta Microsoft. Em vez de comprar licenças, o portal deles entra por matrícula e senha e grava nas mesmas listas, por um webhook. A coordenação usa o ERP ou o portal, e os dois veem a mesma escala.</p><p lang="en">Agency staff have no Microsoft account. Instead of buying licenses, their portal signs in with an employee number and password and writes to the same lists through a webhook. Coordinators use the ERP or the portal, and both see the same schedule.</p></div></li>
+        <li><div><h4><span lang="pt-BR">Migrar sem perder um registro</span><span lang="en">Migrate without losing a record</span></h4><p lang="pt-BR">Cada aplicativo legado entrou no ERP com importação única, conferência registro a registro e o sistema antigo no ar até a validação em produção. Quatro migrações, zero perda.</p><p lang="en">Each legacy app entered the ERP with a one-off import, record-by-record checks and the old system kept online until validation in production. Four migrations, zero loss.</p></div></li>
+      </ol>
+    </div>
+
+    <!-- Vídeo e demo -->
+    <div class="media">
+      <article class="media-card">
+        <div class="frame"><div class="play" aria-hidden="true"></div></div>
+        <div class="txt">
+          <h3><span lang="pt-BR">O projeto em 2 minutos</span><span lang="en">The project in 2 minutes</span> <span class="pill pill-dark"><span lang="pt-BR">em produção</span><span lang="en">in production</span></span></h3>
+          <p lang="pt-BR">Problema, solução, um passeio pelos módulos e os números. O vídeo entra quando a versão 1.0 (design) estiver no ar.</p><p lang="en">Problem, solution, a walk through the modules and the numbers. The video goes live with version 1.0 (design).</p>
+        </div>
+      </article>
+      <article class="media-card">
+        <div class="frame demo"><div class="ghost" aria-hidden="true"><div class="side"><i></i><i></i><i></i><i></i><i></i></div><div class="main"><i class="w"></i><i></i><i></i><i></i></div></div></div>
+        <div class="txt">
+          <h3><span lang="pt-BR">Demo navegável</span><span lang="en">Clickable demo</span> <span class="pill pill-dark"><span lang="pt-BR">em preparação</span><span lang="en">coming soon</span></span></h3>
+          <p lang="pt-BR">Uma cópia do ERP com empresa fictícia e dados gerados, sem login, para quem quiser clicar.</p><p lang="en">A copy of the ERP with a fictitious company and generated data, no sign-in, for anyone who wants to click around.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- ============================ REGISTRO DE MARCOS ============================ -->
+<section class="section" id="registro">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span lang="pt-BR">Registro de marcos</span><span lang="en">Milestone log</span></p>
+      <h2 class="h2"><span lang="pt-BR">Uma entrada por versão. É assim que o projeto evolui.</span><span lang="en">One entry per version. This is how the project evolves.</span></h2>
+      <p class="lead"><span lang="pt-BR">Este registro é atualizado a cada versão publicada. Mostra o caminho, não só o resultado.</span><span lang="en">This log is updated with every published version. It shows the path, not just the result.</span></p>
+    </div>
+    <div class="log">
+      <article><time datetime="2025-09"><span lang="pt-BR">set 2025</span><span lang="en">Sep 2025</span><small><span lang="pt-BR">início</span><span lang="en">start</span></small></time><div><h3><span lang="pt-BR">Ponto de partida</span><span lang="en">Starting point</span> <span class="pill"><span lang="pt-BR">M365</span><span lang="en">M365</span></span></h3><p lang="pt-BR">Entrada na empresa: papel, planilhas legadas e nenhum ambiente colaborativo. Começa a implantação do Microsoft 365 e a estruturação dos sites do SharePoint por área.</p><p lang="en">Joining the company: paper, legacy spreadsheets and no collaborative environment. Deployment of Microsoft 365 begins, with SharePoint sites structured by department.</p></div></article>
+      <article><time datetime="2026"><span lang="pt-BR">1º sem. 2026</span><span lang="en">H1 2026</span></time><div><h3><span lang="pt-BR">Microsoft 365 no ar em 8 meses</span><span lang="en">Microsoft 365 live in 8 months</span> <span class="pill"><span lang="pt-BR">marco</span><span lang="en">milestone</span></span></h3><p lang="pt-BR">SharePoint estruturado como ERP leve: sites por departamento, bibliotecas de documentos e fluxos de dados substituindo controles manuais em operações, financeiro, RH e frota. Primeiro fluxo estruturado de contas a pagar.</p><p lang="en">SharePoint structured as a lightweight ERP: department sites, document libraries and data flows replacing manual controls across operations, finance, HR and fleet. First structured accounts-payable workflow.</p></div></article>
+      <article><time datetime="2026-07"><span lang="pt-BR">jul 2026</span><span lang="en">Jul 2026</span><small><span lang="pt-BR">piloto</span><span lang="en">pilot</span></small></time><div><h3><span lang="pt-BR">Escala da agência</span><span lang="en">Agency shift schedule</span> <span class="pill"><span lang="pt-BR">app 1</span><span lang="en">app 1</span></span></h3><p lang="pt-BR">Primeiro aplicativo: escala por turnos acessível pelo celular, três níveis de acesso e custo zero. Nasceu de uma planilha impressa na parede.</p><p lang="en">First app: a shift schedule you can open on a phone, three access levels and zero cost. It started as a printed spreadsheet on the wall.</p></div></article>
+      <article><time datetime="2026-08"><span lang="pt-BR">ago 2026</span><span lang="en">Aug 2026</span></time><div><h3><span lang="pt-BR">Painel de infrações com aviso por WhatsApp</span><span lang="en">Violations dashboard with WhatsApp alerts</span> <span class="pill"><span lang="pt-BR">app 2</span><span lang="en">app 2</span></span></h3><p lang="pt-BR">Ocorrências de velocidade e área restrita lidas do SharePoint; o motorista recebe o aviso no próprio telefone, com cópia para a gestão.</p><p lang="en">Speeding and restricted-area incidents read from SharePoint; the driver gets the alert on their own phone, with a copy to management.</p></div></article>
+      <article><time datetime="2026-09"><span lang="pt-BR">ago–set 2026</span><span lang="en">Aug–Sep 2026</span></time><div><h3><span lang="pt-BR">Gestão de Dívidas: nove carteiras em uma plataforma</span><span lang="en">Debt Management: nine portfolios in one platform</span> <span class="pill"><span lang="pt-BR">plataforma</span><span lang="en">platform</span></span></h3><p lang="pt-BR">Aplicação multiusuário (PWA + Supabase) com acesso por perfil e trilha de auditoria: planejado × realizado, curva ABC, modelagem de renegociação e simulação de caixa para aquisição de ativos.</p><p lang="en">Multi-user application (PWA + Supabase) with role-based access and an audit trail: planned vs. actual, ABC analysis, renegotiation modelling and cash-flow simulation for asset purchases.</p></div></article>
+      <article><time datetime="2026-09"><span lang="pt-BR">set 2026</span><span lang="en">Sep 2026</span></time><div><h3><span lang="pt-BR">SAC digital em três canais</span><span lang="en">Digital customer service across three channels</span> <span class="pill"><span lang="pt-BR">app 3</span><span lang="en">app 3</span></span></h3><p lang="pt-BR">WhatsApp, site e e-mail viram chamados com protocolo, categoria e prazo, classificados por IA. Captura automática do e-mail três vezes ao dia.</p><p lang="en">WhatsApp, web and e-mail become tickets with protocol, category and deadline, classified by AI. Automatic e-mail capture three times a day.</p></div></article>
+      <article><time datetime="2026-09-11"><span lang="pt-BR">11 set 2026</span><span lang="en">11 Sep 2026</span></time><div><h3><span lang="pt-BR">Arquitetura do ERP definida</span><span lang="en">ERP architecture defined</span> <span class="pill"><span lang="pt-BR">decisão</span><span lang="en">decision</span></span></h3><p lang="pt-BR">Página estática no GitHub Pages, login corporativo, Microsoft Graph e listas do SharePoint. Automação só onde algo precisa rodar sem usuário.</p><p lang="en">Static page on GitHub Pages, corporate sign-in, Microsoft Graph and SharePoint lists. Automation only where something must run without a user.</p></div></article>
+      <article><time datetime="2026-09-16"><span lang="pt-BR">16 set 2026</span><span lang="en">16 Sep 2026</span></time><div><h3><span lang="pt-BR">Base do sistema e financeiro</span><span lang="en">System foundation and finance</span> <span class="pill"><span lang="pt-BR">v0.1 → v0.6</span><span lang="en">v0.1 → v0.6</span></span></h3><p lang="pt-BR">Login e permissões por grupo, setup automático das listas, Contas a Pagar, Fornecedores e Obrigações. Mais de 300 contas importadas por competência.</p><p lang="en">Sign-in and group permissions, automatic list setup, Accounts Payable, Suppliers and Recurring obligations. Over 300 bills imported by accounting period.</p></div></article>
+      <article><time datetime="2026-09-22"><span lang="pt-BR">22 set 2026</span><span lang="en">22 Sep 2026</span></time><div><h3><span lang="pt-BR">Quatro aplicativos dentro do ERP</span><span lang="en">Four apps inside the ERP</span> <span class="pill"><span lang="pt-BR">v0.7 → v0.12</span><span lang="en">v0.7 → v0.12</span></span></h3><p lang="pt-BR">Gerar mês e vencido automático. Infrações, SAC, Diesel e Escala migrados para dentro do sistema, portal dos funcionários no ar e auditoria de desempenho registrada.</p><p lang="en">Generate month and automatic overdue flags. Violations, customer service, Diesel and Shift Schedule migrated into the system, employee portal live and a performance audit on record.</p></div></article>
+      <article class="next"><time><span lang="pt-BR">próximo</span><span lang="en">next</span></time><div><h3><span lang="pt-BR">Fechamento do financeiro e versão 1.0</span><span lang="en">Finance close-out and version 1.0</span></h3><p lang="pt-BR">Contas a Pagar fechado com quem usa, Fluxo de Caixa e LevBom saindo do protótipo, desempenho e design system. A versão 1.0 marca a gravação do vídeo e a demo pública.</p><p lang="en">Accounts Payable closed with its users, Cash Flow and LevBom leaving prototype stage, performance and a design system. Version 1.0 marks the video recording and the public demo.</p></div></article>
+    </div>
+  </div>
+</section>
+<!-- ============================ DOCUMENTOS ============================ -->
+<section class="section alt" id="documentos">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span lang="pt-BR">Documentos e controles</span><span lang="en">Documents and controls</span></p>
+      <h2 class="h2"><span lang="pt-BR">O que sai do sistema também precisa funcionar no papel.</span><span lang="en">What comes out of the system also has to work on paper.</span></h2>
+      <p class="lead"><span lang="pt-BR">Roadmaps versionados, relatórios impressos gerados no navegador, controles por competência e um framework de compliance. Imagens ilustrativas; os documentos reais entram anonimizados.</span><span lang="en">Versioned roadmaps, print reports generated in the browser, period-based controls and a compliance framework. Illustrative images; the real documents come in anonymized.</span></p>
+    </div>
+    <div class="docs">
+      <!-- SLOT: doc-roadmap.png / doc-mural.png / doc-fluxo.png / doc-sst.png (1200×900). -->
+      <article class="doc"><img src="assets/img/doc-roadmap.png" alt="Página de roadmap com fases e estados" data-alt-en="Roadmap page with phases and states" width="1200" height="900" loading="lazy"><div class="txt"><h3><span lang="pt-BR">Roadmap end-to-end</span><span lang="en">End-to-end roadmap</span></h3><p lang="pt-BR">Cada projeto tem um roadmap com fases, decisões registradas e lições técnicas. É o documento que permite outra pessoa continuar.</p><p lang="en">Every project has a roadmap with phases, recorded decisions and technical lessons. It is the document that lets someone else carry on.</p></div></article>
+      <article class="doc"><img src="assets/img/doc-mural.png" alt="Mural mensal de infrações em formato A4" data-alt-en="Monthly violations board in A4 format" width="1200" height="900" loading="lazy"><div class="txt"><h3><span lang="pt-BR">Mural mensal de infrações</span><span lang="en">Monthly violations board</span></h3><p lang="pt-BR">Relatório A4 gerado no navegador: números do mês, reconhecimento de quem não teve ocorrência e recado da gestão.</p><p lang="en">A4 report generated in the browser: the month's numbers, recognition for drivers with no incidents and a note from management.</p></div></article>
+      <article class="doc"><img src="assets/img/doc-fluxo.png" alt="Controle financeiro com vencimentos e status" data-alt-en="Financial control with due dates and status" width="1200" height="900" loading="lazy"><div class="txt"><h3><span lang="pt-BR">Controle financeiro por competência</span><span lang="en">Period-based financial control</span></h3><p lang="pt-BR">Contas fixas, vencimentos e status em uma visão só, alimentada pelas mesmas listas que o sistema usa.</p><p lang="en">Recurring bills, due dates and status in one view, fed by the same lists the system uses.</p></div></article>
+      <article class="doc"><img src="assets/img/doc-sst.png" alt="Matriz de compliance em SST com normas, risco e prazo" data-alt-en="OHS compliance matrix with standards, risk and deadline" width="1200" height="900" loading="lazy"><div class="txt"><h3><span lang="pt-BR">Framework de compliance em SST</span><span lang="en">OHS compliance framework</span></h3><p lang="pt-BR">76 itens em 7 normas regulamentadoras, com ação corretiva priorizada por severidade de risco e prazo legal.</p><p lang="en">76 items across 7 regulatory standards, with corrective actions prioritized by risk severity and legal deadline.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTROLES & INDICADORES ============================ -->
+<section class="section" id="indicadores">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span lang="pt-BR">Indicadores</span><span lang="en">Indicators</span></p>
+      <h2 class="h2"><span lang="pt-BR">Ferramentas que construí para rodar o dia a dia, não só para apresentar.</span><span lang="en">Tools I built to run day-to-day work, not just to present.</span></h2>
+      <p class="lead"><span lang="pt-BR">KPIs e resultados de projetos de consultoria e de operação offshore: o indicador que criei, o problema que ele resolvia e o resultado obtido. Hoje: modelos de Excel em modo de apresentação — print e descrição, com acesso a uma versão navegável em página sobreposta, sem download do arquivo original.</span><span lang="en">KPIs and results from consulting projects and offshore operations: the indicator I created, the problem it solved and the outcome. Today: Excel templates shown presentation-style — a screenshot and description, with access to a navigable version in an overlay page, no download of the original file.</span></p>
+    </div>
+    <div class="docs">
+      <article class="doc placeholder"><div class="txt"><h3><span lang="pt-BR">Controle de custos e orçamento</span><span lang="en">Cost &amp; budget control</span> <span class="pill"><span lang="pt-BR">em preparação</span><span lang="en">in progress</span></span></h3><p lang="pt-BR">Modelo de consultoria para acompanhar orçamento por conta, com alerta de desvio e fechamento mensal.</p><p lang="en">Consulting template to track budget by account, with variance alerts and monthly close.</p></div></article>
+      <article class="doc placeholder"><div class="txt"><h3><span lang="pt-BR">KPIs de manutenção offshore</span><span lang="en">Offshore maintenance KPIs</span> <span class="pill"><span lang="pt-BR">em preparação</span><span lang="en">in progress</span></span></h3><p lang="pt-BR">Planilha de disponibilidade e confiabilidade de ativos, com backlog priorizado, usada em FPSOs.</p><p lang="en">Asset uptime and reliability spreadsheet with a prioritized backlog, used on FPSOs.</p></div></article>
+      <article class="doc placeholder"><div class="txt"><h3><span lang="pt-BR">Planejamento de embarcações e cargas</span><span lang="en">Vessel &amp; cargo planning</span> <span class="pill"><span lang="pt-BR">em preparação</span><span lang="en">in progress</span></span></h3><p lang="pt-BR">Modelo de programação de embarcações e manifesto de carga, com OTIF e cargas perigosas (IMDG).</p><p lang="en">Vessel scheduling and cargo manifest template, with OTIF and dangerous goods (IMDG).</p></div></article>
+    </div>
+    <p lang="pt-BR" class="muted small">Em preparação: cada planilha entra como print + descrição assim que estiver higienizada (sem dado de cliente ou empregador) e adaptada para a versão digital navegável.</p><p lang="en" class="muted small">In preparation: each spreadsheet goes up as a screenshot + description once it is sanitized (no client or employer data) and adapted into the navigable digital version.</p>
+  </div>
+</section>
+<!-- ============================ CONTATO ============================ -->
+<section class="section" id="contato">
+  <div class="container">
+    <div class="contact">
+      <div class="section-head tight">
+        <p class="eyebrow"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></p>
+        <h2 class="h2"><span lang="pt-BR">Vamos conversar.</span><span lang="en">Let's talk.</span></h2>
+        <p class="lead"><span lang="pt-BR">Aberto a posições sêniores em planejamento e gestão de projetos, excelência de processos e governança operacional — em indústrias reguladas, dentro e fora do óleo e gás — e a trocar ideias sobre Microsoft 365 na prática.</span><span lang="en">Open to senior roles in project planning and management, process excellence and operational governance — in regulated industries, within and beyond oil and gas — and to comparing notes on Microsoft 365 in practice.</span></p>
+      </div>
+      <dl class="contact-list">
+        <div><dt>E-mail</dt><dd><a id="email" href="mailto:rafael.oertel@gmail.com">rafael.oertel@gmail.com</a><button class="copy" type="button" data-copy="rafael.oertel@gmail.com">Copiar</button></dd></div>
+        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/rafael-oertel-16750b40" rel="me noopener" target="_blank">linkedin.com/in/rafael-oertel-16750b40 ↗</a></dd></div>
+        <div><dt><span lang="pt-BR">Currículo</span><span lang="en">Résumé</span></dt><dd><span><a lang="pt-BR" href="assets/cv/Rafael_Oertel_CV_PT.pdf">Rafael_Oertel_CV_PT.pdf</a><a lang="en" href="assets/cv/Rafael_Oertel_CV_EN.pdf">Rafael_Oertel_CV_EN.pdf</a> · <a lang="pt-BR" href="assets/cv/Rafael_Oertel_CV_EN.pdf">versão em inglês</a><a lang="en" href="assets/cv/Rafael_Oertel_CV_PT.pdf">Portuguese version</a></span></dd></div>
+        <div><dt><span lang="pt-BR">Local</span><span lang="en">Location</span></dt><dd><span lang="pt-BR">Niterói, RJ<br>Macaé, RJ · Brasil</span><span lang="en">Niterói, RJ<br>Macaé, RJ · Brazil</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="reach">
+      <div class="reach-head">
+        <h3><span lang="pt-BR">Fale comigo</span><span lang="en">Get in touch</span></h3>
+        <p lang="pt-BR">Preencha os campos abaixo. Seu aplicativo de e-mail abre com a mensagem pronta, endereçada diretamente a mim — sem formulário em servidor de terceiros.</p><p lang="en">Fill in the fields below. Your email application opens with the message ready, addressed directly to me — no third-party server form involved.</p>
+      </div>
+      <form class="reach-form" id="reachForm" novalidate>
+        <div class="f-grid">
+          <div class="f-field"><label for="rf-name"><span lang="pt-BR">Nome</span><span lang="en">Name</span></label><input id="rf-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="f-field"><label for="rf-email">E-mail</label><input id="rf-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="f-field"><label for="rf-phone"><span lang="pt-BR">Telefone (opcional)</span><span lang="en">Phone (optional)</span></label><input id="rf-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="f-field"><label for="rf-subject"><span lang="pt-BR">Assunto</span><span lang="en">Subject</span></label><input id="rf-subject" name="subject" type="text" required></div>
+          <div class="f-field f-wide"><label for="rf-message"><span lang="pt-BR">Mensagem</span><span lang="en">Message</span></label><textarea id="rf-message" name="message" rows="5" required></textarea></div>
+        </div>
+        <div class="f-actions">
+          <button class="btn btn-primary" type="submit"><span lang="pt-BR">Enviar mensagem</span><span lang="en">Send message</span> <span aria-hidden="true">→</span></button>
+          <p class="f-note" id="rfNote" role="status"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================ RODAPÉ ============================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <a class="brand" href="#inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><rect class="mark-bg" x="0" y="0" width="40" height="40" rx="4"/><text class="mark-fg" x="20" y="27" text-anchor="middle" font-family="Schibsted Grotesk, Arial, sans-serif" font-weight="800" font-size="19" letter-spacing="-1">RO</text><circle class="mark-dot" cx="33" cy="8" r="3"/></svg><span>Rafael Oertel</span></a>
+      <nav class="fnav" aria-label="Rodapé"><a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a><a href="#erp"><span lang="pt-BR">Projeto ERP</span><span lang="en">ERP project</span></a><a href="#registro"><span lang="pt-BR">Registro</span><span lang="en">Log</span></a><a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a></nav>
+    </div>
+    <p class="fine"><span lang="pt-BR">© <span class="ano">2026</span> Rafael Oertel. Site feito à mão em HTML, sem rastreadores, com assistência de inteligência artificial; o conteúdo e as decisões são meus. Versão 0.4.4 do site · atualizado em 4 de outubro de 2026.</span><span lang="en">© <span class="ano">2026</span> Rafael Oertel. Hand-built HTML site, no trackers, made with AI assistance; the content and the decisions are mine. Site version 0.4.4 · updated 4 October 2026.</span></p>
+  </div>
+  <a class="totop" id="totop" href="#inicio" aria-label="Voltar ao topo · Back to top"><span aria-hidden="true">↑</span></a>
+</footer>
+<div class="review-badge" aria-hidden="true"><span lang="pt-BR">modo revisão: itens em amarelo são para confirmar</span><span lang="en">review mode: items in yellow are to be confirmed</span></div>
+<script>
+(function(){
+  var html=document.documentElement;
+  var STR={pt:{menu:'Menu',close:'Fechar',copy:'Copiar',copied:'Copiado',sw:'EN · Switch to English',code:'EN',title:'Rafael Oertel — Engenheiro de Produção · Planejamento e Gestão de Projetos'},
+           en:{menu:'Menu',close:'Close',copy:'Copy',copied:'Copied',sw:'PT · Mudar para português',code:'PT',title:'Rafael Oertel — Production Engineer · Project Planning & Management'}};
+  // ---- idioma: #en/#pt no endereço > preferência salva > idioma do navegador
+  function pick(){
+    var h=(location.hash||'').replace('#','').toLowerCase();
+    if(h==='en'||h==='pt') return h;
+    try{ var s=localStorage.getItem('lang'); if(s==='en'||s==='pt') return s; }catch(e){}
+    var nl=(navigator.language||'pt').toLowerCase();
+    return nl.indexOf('pt')===0 ? 'pt' : 'en';
+  }
+  var langBtn=document.getElementById('langBtn'), langCode=document.getElementById('langCode');
+  function setLang(l,remember){
+    html.setAttribute('data-lang',l); html.setAttribute('lang', l==='pt'?'pt-BR':'en');
+    langBtn.setAttribute('aria-label',STR[l].sw); langBtn.title=STR[l].sw; langCode.textContent=STR[l].code; document.title=STR[l].title;
+    var md=document.querySelector('meta[name="description"]'); if(md){ md.setAttribute('content', md.getAttribute('data-'+l)||md.getAttribute('content')); }
+    document.querySelectorAll('img[data-alt-en]').forEach(function(im){ if(!im.dataset.altPt){im.dataset.altPt=im.getAttribute('alt');} im.setAttribute('alt', l==='en'?im.dataset.altEn:im.dataset.altPt); });
+    document.querySelectorAll('.copy').forEach(function(b){ if(!b.getAttribute('data-done')) b.textContent=STR[l].copy; });
+    if(remember){ try{ localStorage.setItem('lang',l); }catch(e){} try{ history.replaceState(null,'','#'+l); }catch(e){} }
+  }
+  setLang(pick(), false);
+  langBtn.addEventListener('click',function(){ setLang(html.getAttribute('data-lang')==='pt'?'en':'pt', true); });
+  window.addEventListener('hashchange',function(){ var h=(location.hash||'').replace('#','').toLowerCase(); if(h==='en'||h==='pt') setLang(h,false); });
+  // ---- cabeçalho e menu
+  var header=document.getElementById('topo'), nav=document.getElementById('nav'), btn=document.getElementById('menuBtn');
+  var totop=document.getElementById('totop'), ticking=false;
+  function onScroll(){ var y=window.scrollY; if(y>40){header.classList.add('scrolled');}else{header.classList.remove('scrolled');} if(totop){ if(y>900){totop.classList.add('on');}else{totop.classList.remove('on');} } ticking=false; }
+  onScroll(); window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(onScroll); } },{passive:true});
+  // ---- seção ativa no menu (scroll spy)
+  var links=Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]')).filter(function(a){return !a.classList.contains('btn');});
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));}).filter(Boolean);
+  if('IntersectionObserver' in window && secs.length){
+    var current=null;
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ current=e.target.id; } });
+      links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+current); });
+    },{rootMargin:'-45% 0px -50% 0px',threshold:0});
+    secs.forEach(function(sc){ io.observe(sc); });
+  }
+  function menuLabel(open){ var l=html.getAttribute('data-lang'); btn.innerHTML=(open?STR[l].close+' <span aria-hidden="true">✕</span>':STR[l].menu+' <span aria-hidden="true">☰</span>'); }
+  btn.addEventListener('click',function(){ var open=nav.classList.toggle('open'); btn.setAttribute('aria-expanded',open?'true':'false'); menuLabel(open); if(open){header.classList.add('scrolled');} else {onScroll();} });
+  function closeMenu(){ if(nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); menuLabel(false); onScroll(); } }
+  nav.addEventListener('click',function(e){ if(e.target.closest('a')){ closeMenu(); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeMenu(); } });
+  document.addEventListener('click',function(e){ if(nav.classList.contains('open') && !e.target.closest('#nav') && !e.target.closest('#menuBtn')){ closeMenu(); } });
+  // ---- copiar e-mail
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var v=b.getAttribute('data-copy'), l=html.getAttribute('data-lang');
+      var done=function(){ b.textContent=STR[l].copied; b.setAttribute('data-done','1'); setTimeout(function(){ b.textContent=STR[html.getAttribute('data-lang')].copy; b.removeAttribute('data-done'); },1800); };
+      function fallback(){ var r=document.createRange(); r.selectNodeContents(document.getElementById('email')); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(v).then(done,fallback); } else { fallback(); }
+    });
+  });
+  // ---- formulário "fale comigo" -> abre o e-mail com a mensagem pronta
+  var reachForm=document.getElementById('reachForm');
+  if(reachForm){
+    var rfNote=document.getElementById('rfNote');
+    var RFSTR={pt:{req:'Preencha nome, e-mail, assunto e mensagem.',ok:'Abrindo seu aplicativo de e-mail…',nameLbl:'Nome',emailLbl:'E-mail',phoneLbl:'Telefone'},
+               en:{req:'Please fill in name, email, subject and message.',ok:'Opening your email application…',nameLbl:'Name',emailLbl:'Email',phoneLbl:'Phone'}};
+    reachForm.addEventListener('submit',function(e){
+      e.preventDefault();
+      var l=html.getAttribute('data-lang'), t=RFSTR[l];
+      var name=document.getElementById('rf-name').value.trim();
+      var email=document.getElementById('rf-email').value.trim();
+      var phone=document.getElementById('rf-phone').value.trim();
+      var subject=document.getElementById('rf-subject').value.trim();
+      var message=document.getElementById('rf-message').value.trim();
+      if(!name||!email||!subject||!message){ rfNote.textContent=t.req; return; }
+      var body=t.nameLbl+': '+name+'\n'+t.emailLbl+': '+email+(phone?('\n'+t.phoneLbl+': '+phone):'')+'\n\n'+message;
+      rfNote.textContent=t.ok;
+      window.location.href='mailto:rafael.oertel@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    });
+  }
+  // ---- modo revisão (?review) e ano
+  try{ if(/review/.test(location.search)||/review/.test(location.hash)){document.body.classList.add('review');} }catch(e){}
+  document.querySelectorAll('.ano').forEach(function(y){ y.textContent=String(new Date().getFullYear()); });
+})();
+</script>
+</body>
+</html>
