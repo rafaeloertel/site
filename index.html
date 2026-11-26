@@ -510,6 +510,19 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
 .log details.log-earlier[open]{padding-bottom:12px;border-bottom:1px solid var(--line)}
 
 
+
+/* ---------- topo (v0.6.0): marca à esquerda, páginas no centro, currículo e idioma à direita ---------- */
+@media (min-width:1161px){
+  .header .bar{display:grid;grid-template-columns:minmax(max-content,1fr) auto minmax(max-content,1fr);gap:24px}
+  .header .brand{justify-self:start}
+  .header .nav{justify-self:center}
+  .header .right{justify-self:end}
+}
+.cvbtn{padding:10px 16px;font-size:.9rem}
+.header.scrolled .cvbtn{color:var(--ink);border-color:var(--line)}
+.header.scrolled .cvbtn:hover{border-color:var(--ink);background:transparent}
+@media (max-width:1160px){.cvbtn{display:none!important}}
+
 /* ---------- modo páginas (v0.6.0): cada título do menu abre uma página; sem JavaScript, tudo aparece em sequência ---------- */
 html.pages .pg{display:none}
 html.pages .pg.on{display:block;animation:pgIn .35s ease both}
@@ -579,17 +592,17 @@ html:not(.pages) .pager{display:none}
 <header class="header" id="topo">
   <div class="container bar">
     <a class="brand" href="#inicio"><svg viewBox="6 6 52 52" aria-hidden="true"><path d="M32.0 8.0L52.78 20.0L32.0 32.0L11.22 20.0Z" class="mk-top"/><path d="M11.22 44.0L32.0 56.0L32.0 32.0L11.22 20.0Z" class="mk-left"/><path d="M52.78 44.0L32.0 56.0L32.0 32.0L52.78 20.0Z" class="mk-right"/><path d="M15.79 29.84L32.0 39.2L32.0 41.36L15.79 32.0Z" class="mk-bar"/><path d="M32.0 39.2L35.74 37.04L35.74 39.2L32.0 41.36Z" class="mk-bar2"/><path d="M21.61 37.76L32.0 43.76L32.0 45.92L21.61 39.92Z" class="mk-bar"/><path d="M32.0 43.76L41.35 38.36L41.35 40.52L32.0 45.92Z" class="mk-bar2"/><path d="M27.01 45.44L32.0 48.32L32.0 50.48L27.01 47.6Z" class="mk-bar"/><path d="M32.0 48.32L46.55 39.92L46.55 42.08L32.0 50.48Z" class="mk-bar2"/><path d="M32.0 33.92L32.0 54.08" fill="none" class="mk-line" stroke-dasharray="2.4 1.8"/></svg><span>Rafael Oertel</span></a>
+    <nav class="nav" id="nav" aria-label="Seções">
+      <a href="#inicio"><span lang="pt-BR">Início</span><span lang="en">Home</span></a>
+      <a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
+      <a href="#metodo"><span lang="pt-BR">Como trabalho</span><span lang="en">How I work</span></a>
+      <a href="#trajetoria"><span lang="pt-BR">Trajetória</span><span lang="en">Experience</span></a>
+      <a href="#erp"><span lang="pt-BR">Estudo de caso</span><span lang="en">Case study</span></a>
+      <a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
+    </nav>
     <div class="right">
-      <nav class="nav" id="nav" aria-label="Seções">
-        <a href="#inicio"><span lang="pt-BR">Início</span><span lang="en">Home</span></a>
-        <a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
-        <a href="#metodo"><span lang="pt-BR">Como trabalho</span><span lang="en">How I work</span></a>
-        <a href="#trajetoria"><span lang="pt-BR">Trajetória</span><span lang="en">Experience</span></a>
-        <a href="#erp"><span lang="pt-BR">Estudo de caso</span><span lang="en">Case study</span></a>
-        <a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
-        <a class="btn btn-light" lang="pt-BR" href="assets/cv/Rafael_Oertel_CV_PT.pdf">Currículo (PDF)</a>
-        <a class="btn btn-light" lang="en" href="assets/cv/Rafael_Oertel_CV_EN.pdf">Résumé (PDF)</a>
-      </nav>
+      <a class="btn btn-light cvbtn" lang="pt-BR" href="assets/cv/Rafael_Oertel_CV_PT.pdf">Currículo (PDF)</a>
+      <a class="btn btn-light cvbtn" lang="en" href="assets/cv/Rafael_Oertel_CV_EN.pdf">Résumé (PDF)</a>
       <!-- Alternador de idioma: mostra a bandeira do idioma para o qual a página vai mudar -->
       <button class="lang" id="langBtn" type="button" title="Switch to English" aria-label="EN · Switch to English"><svg class="flag flag-us" viewBox="0 0 22 16" aria-hidden="true"><defs><clipPath id="fus"><rect width="22" height="16" rx="2"/></clipPath></defs><g clip-path="url(#fus)"><rect width="22" height="16" fill="#fff"/><g fill="#B22234"><rect y="0" width="22" height="1.23"/><rect y="2.46" width="22" height="1.23"/><rect y="4.92" width="22" height="1.23"/><rect y="7.38" width="22" height="1.23"/><rect y="9.85" width="22" height="1.23"/><rect y="12.31" width="22" height="1.23"/><rect y="14.77" width="22" height="1.23"/></g><rect width="9.4" height="8.6" fill="#3C3B6E"/><g fill="#fff"><circle cx="1.8" cy="1.8" r=".55"/><circle cx="4.7" cy="1.8" r=".55"/><circle cx="7.6" cy="1.8" r=".55"/><circle cx="3.2" cy="3.6" r=".55"/><circle cx="6.1" cy="3.6" r=".55"/><circle cx="1.8" cy="5.4" r=".55"/><circle cx="4.7" cy="5.4" r=".55"/><circle cx="7.6" cy="5.4" r=".55"/><circle cx="3.2" cy="7.2" r=".55"/><circle cx="6.1" cy="7.2" r=".55"/></g></g></svg><svg class="flag flag-br" viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" rx="2" fill="#009C3B"/><path d="M11 2.3 19.4 8 11 13.7 2.6 8z" fill="#FFDF00"/><circle cx="11" cy="8" r="3.1" fill="#002776"/><path d="M8.2 7.4c1.9-.6 3.9-.3 5.7.8" stroke="#fff" stroke-width=".7" fill="none"/></svg><span class="code" id="langCode">EN</span></button>
       <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav"><span lang="pt-BR">Menu</span><span lang="en">Menu</span> <span aria-hidden="true">☰</span></button>
