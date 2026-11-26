@@ -509,6 +509,44 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
 .log details.log-earlier{padding:0 0 6px;border-top:0}
 .log details.log-earlier[open]{padding-bottom:12px;border-bottom:1px solid var(--line)}
 
+
+/* ---------- modo páginas (v0.6.0): cada título do menu abre uma página; sem JavaScript, tudo aparece em sequência ---------- */
+html.pages .pg{display:none}
+html.pages .pg.on{display:block;animation:pgIn .35s ease both}
+@keyframes pgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){html.pages .pg.on{animation:none}}
+html.pages .pg:not([data-pg="inicio"]){padding-top:calc(72px + env(safe-area-inset-top,0px))}
+html.pages .pg:not([data-pg="inicio"]) > .section:first-child{padding-top:clamp(40px,6vw,72px)}
+.pager{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding-block:28px 56px;border-top:1px solid var(--line)}
+html:not(.pages) .pager{display:none}
+.pager a{display:flex;flex-direction:column;gap:2px;padding:12px 16px;border-radius:6px;border:1px solid var(--line);color:var(--ink);text-decoration:none;min-height:44px;transition:border-color .2s,background .2s}
+.pager a:hover{border-color:var(--brand);background:var(--bg-2)}
+.pager a.next{text-align:right;justify-self:end;border-color:var(--brand)}
+.pager a.prev{justify-self:start}
+.pager small{font-size:.8rem;color:var(--ink-2,#5b616b)}
+.pager b{font-family:var(--f-display);font-size:1.05rem}
+.pager .count{font:600 .85rem var(--f-display);color:var(--ink-2,#5b616b);letter-spacing:.04em}
+.pg[data-pg="inicio"] .pager,.pg[data-pg="sobre"] .pager{border-top:0}
+.statement + .pager{margin-top:0}
+@media (max-width:600px){.pager{grid-template-columns:1fr 1fr}.pager .count{display:none}.pager a b{font-size:.95rem}}
+@media (max-width:1160px){
+  html.pages .menu-btn{display:none}
+  html.pages .header{background:var(--surface);color:var(--ink);box-shadow:0 1px 0 var(--line)}
+  html.pages .nav{display:flex;position:absolute;top:calc(64px + env(safe-area-inset-top,0px));left:0;right:0;flex-direction:row;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;
+    background:var(--surface);border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;box-shadow:0 8px 18px rgba(34,38,46,.06);padding:8px var(--gutter)}
+  html.pages .nav::-webkit-scrollbar{display:none}
+  html.pages .nav a{flex:none;padding:8px 14px;font-size:.95rem;border-radius:999px;border:1px solid var(--line);opacity:1}
+  html.pages .nav a.active{background:var(--brand);border-color:var(--brand);color:var(--brand-contrast);box-shadow:none}
+  html.pages .nav .btn{display:none}
+  html.pages .header .bar{height:64px}
+  html.pages .pg:not([data-pg="inicio"]){padding-top:calc(118px + env(safe-area-inset-top,0px))}
+  html.pages .hero{padding-top:calc(118px + env(safe-area-inset-top,0px))}
+  html{scroll-padding-top:130px}
+}
+#video{scroll-margin-top:96px}
+@media (max-width:1160px){#video{scroll-margin-top:136px}}
+@media print{html.pages .pg{display:block!important}.pager{display:none!important}}
+
 /* ---------- impressão: vira um currículo estendido em preto no branco ---------- */
 @media print{
   :root{--bg:#fff;--bg-2:#fff;--surface:#fff;--ink:#000;--text:#111;--text-2:#333;--text-3:#555;--line:#bbb;--line-2:#ddd;--brand:#0F6E6B;--band:#fff;--band-2:#fff;--on-band:#111;--on-band-2:#333;--band-line:#bbb}
@@ -543,11 +581,11 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
     <a class="brand" href="#inicio"><svg viewBox="6 6 52 52" aria-hidden="true"><path d="M32.0 8.0L52.78 20.0L32.0 32.0L11.22 20.0Z" class="mk-top"/><path d="M11.22 44.0L32.0 56.0L32.0 32.0L11.22 20.0Z" class="mk-left"/><path d="M52.78 44.0L32.0 56.0L32.0 32.0L52.78 20.0Z" class="mk-right"/><path d="M15.79 29.84L32.0 39.2L32.0 41.36L15.79 32.0Z" class="mk-bar"/><path d="M32.0 39.2L35.74 37.04L35.74 39.2L32.0 41.36Z" class="mk-bar2"/><path d="M21.61 37.76L32.0 43.76L32.0 45.92L21.61 39.92Z" class="mk-bar"/><path d="M32.0 43.76L41.35 38.36L41.35 40.52L32.0 45.92Z" class="mk-bar2"/><path d="M27.01 45.44L32.0 48.32L32.0 50.48L27.01 47.6Z" class="mk-bar"/><path d="M32.0 48.32L46.55 39.92L46.55 42.08L32.0 50.48Z" class="mk-bar2"/><path d="M32.0 33.92L32.0 54.08" fill="none" class="mk-line" stroke-dasharray="2.4 1.8"/></svg><span>Rafael Oertel</span></a>
     <div class="right">
       <nav class="nav" id="nav" aria-label="Seções">
-        <a href="#metodo"><span lang="pt-BR">Método</span><span lang="en">Method</span></a>
-        <a href="#erp"><span lang="pt-BR">Projeto ERP</span><span lang="en">ERP project</span></a>
-        <a href="#registro"><span lang="pt-BR">Registro</span><span lang="en">Log</span></a>
+        <a href="#inicio"><span lang="pt-BR">Início</span><span lang="en">Home</span></a>
         <a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
+        <a href="#metodo"><span lang="pt-BR">Como trabalho</span><span lang="en">How I work</span></a>
         <a href="#trajetoria"><span lang="pt-BR">Trajetória</span><span lang="en">Experience</span></a>
+        <a href="#erp"><span lang="pt-BR">Estudo de caso</span><span lang="en">Case study</span></a>
         <a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
         <a class="btn btn-light" lang="pt-BR" href="assets/cv/Rafael_Oertel_CV_PT.pdf">Currículo (PDF)</a>
         <a class="btn btn-light" lang="en" href="assets/cv/Rafael_Oertel_CV_EN.pdf">Résumé (PDF)</a>
@@ -559,7 +597,8 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
   </div>
 </header>
 <main>
-<!-- ============================ HERO ============================ -->
+<!-- ============================ PÁGINA 1: INÍCIO ============================ -->
+<div class="pg" data-pg="inicio">
 <section class="hero" id="inicio" aria-label="Apresentação">
   <!-- hero.jpg (1932×1086) desktop · hero-mobile.jpg (1000×1500) celular. Ilustração original: cronograma e fluxo de processo. -->
   <picture>
@@ -573,7 +612,7 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
         <h1><span lang="pt-BR">Projetos no prazo, processos sob controle — em qualquer indústria.</span><span lang="en">Projects on time, processes under control — in any industry.</span></h1>
         <p class="lead"><span lang="pt-BR">Treze anos planejando, controlando e melhorando operações em quatro setores: óleo e gás offshore, logística, transporte de passageiros e consultoria corporativa. O óleo e gás formou a base, em ambiente regulado e com indicador todo dia. Hoje aplico o mesmo método à transformação digital de uma transportadora, com um ERP construído do zero.</span><span lang="en">Thirteen years planning, controlling and improving operations across four sectors: offshore oil and gas, logistics, passenger transport and corporate consulting. Oil and gas built the foundation, in a regulated setting with metrics every day. Today I apply the same method to the digital transformation of a transport company, with an ERP built from zero.</span></p>
         <div class="hero-cta">
-          <a class="btn btn-white" href="#video"><span lang="pt-BR">Ver o sistema em 3 min</span><span lang="en">See the system in 3 min</span></a>
+          <a class="btn btn-white" href="#video"><span lang="pt-BR">Ver o sistema em 5 min</span><span lang="en">See the system in 5 min</span></a>
           <a class="btn btn-light" href="#contato"><span lang="pt-BR">Falar comigo</span><span lang="en">Get in touch</span></a>
         </div>
         <p class="hero-cv"><a lang="pt-BR" href="assets/cv/Rafael_Oertel_CV_PT.pdf">Currículo em PDF ↓</a><a lang="en" href="assets/cv/Rafael_Oertel_CV_EN.pdf">Résumé as PDF ↓</a></p>
@@ -582,7 +621,6 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
     </div>
   </div>
 </section>
-<!-- ============================ NÚMEROS ============================ -->
 <section class="numbers" id="numeros" aria-label="Números">
   <div class="container">
     <div class="kpis">
@@ -594,7 +632,59 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
     <p class="note"><span lang="pt-BR">Números do currículo, novembro de 2026. Os indicadores do ERP estão no estudo de caso.</span><span lang="en">Figures from the résumé, November 2026. ERP indicators are in the case study.</span></p>
   </div>
 </section>
-<!-- ============================ MÉTODO ============================ -->
+<nav class="pager container" aria-label="Páginas · Pages 1/6"><span></span><span class="count">1 / 6</span><a class="next" href="#sobre"><small><span lang="pt-BR">Próxima</span><span lang="en">Next</span></small><b><span lang="pt-BR">Sobre</span><span lang="en">About</span> →</b></a></nav>
+</div>
+<!-- ============================ PÁGINA 2: SOBRE ============================ -->
+<div class="pg" data-pg="sobre">
+<section class="section" id="sobre">
+  <div class="container">
+    <div class="about">
+      <div>
+        <figure class="portrait">
+          <!-- portrait.jpg (900×1200, 3:4). Retrato profissional de estúdio. -->
+          <img src="assets/img/portrait.jpg" alt="Retrato profissional de Rafael Oertel, de camisa jeans e braços cruzados, sorrindo" data-alt-en="Professional portrait of Rafael Oertel in a denim shirt, arms crossed, smiling" width="900" height="1200" loading="lazy">
+          <figcaption><span lang="pt-BR">Rafael Oertel · engenheiro de produção</span><span lang="en">Rafael Oertel · production engineer</span></figcaption>
+        </figure>
+        <dl class="facts">
+          <div><dt><span lang="pt-BR">Base</span><span lang="en">Based in</span></dt><dd><span lang="pt-BR">Niterói, RJ · híbrido com Macaé</span><span lang="en">Niterói, Brazil · hybrid with Macaé</span></dd></div>
+          <div><dt><span lang="pt-BR">Formação</span><span lang="en">Education</span></dt><dd><span lang="pt-BR">Eng. de Produção · pós em Eng. de Petróleo (UFRJ)</span><span lang="en">Production Eng. · post-grad. in Petroleum Eng. (UFRJ)</span></dd></div>
+          <div><dt><span lang="pt-BR">Setores</span><span lang="en">Sectors</span></dt><dd><span lang="pt-BR">Óleo e gás offshore · logística e supply chain · transporte · consultoria corporativa</span><span lang="en">Offshore oil &amp; gas · logistics &amp; supply chain · transport · corporate consulting</span></dd></div>
+          <div><dt><span lang="pt-BR">Certificações</span><span lang="en">Certifications</span></dt><dd>CBSP · HUET</dd></div>
+          <div><dt><span lang="pt-BR">Idiomas</span><span lang="en">Languages</span></dt><dd><span lang="pt-BR">Português · Inglês fluente</span><span lang="en">Portuguese · fluent English</span></dd></div>
+        </dl>
+      </div>
+      <div>
+        <div class="section-head">
+          <p class="eyebrow"><span lang="pt-BR">Sobre</span><span lang="en">About</span></p>
+          <h2 class="h2"><span lang="pt-BR">Gosto de ver a operação funcionar de ponta a ponta: do planejamento à tela de quem decide.</span><span lang="en">I like to see an operation work end to end: from the plan to the decision-maker's screen.</span></h2>
+        </div>
+        <div class="prose">
+          <p lang="pt-BR">Sou engenheiro de produção com 13 anos em planejamento e gestão de projetos, melhoria de processos e governança operacional. Comecei na consultoria, controlando custos e KPIs de um portfólio que incluía a conta VALE. Depois vieram oito anos no óleo e gás offshore: coordenei o suprimento offshore da Equinor no Brasil (via Accenture), com cinco anos embarcado em escala 14x14, e cuidei de KPIs de manutenção e performance de ativos em FPSOs na SBM Offshore. Foram ambientes regulados que formaram minha base em governança de indicadores, controle de custos, cadeia de suprimentos e compliance em SAP.</p><p lang="en">I am a production engineer with 13 years in project planning and management, process improvement and operational governance. I started in consulting, controlling costs and KPIs for a portfolio that included the VALE account. Then came eight years in offshore oil and gas: I coordinated Equinor's offshore supply operations in Brazil (via Accenture), including five years on 14x14 rotation, and looked after maintenance KPIs and asset performance on FPSOs at SBM Offshore. Those regulated environments built my foundation in KPI governance, cost control, supply chain and SAP-based compliance.</p>
+          <p lang="pt-BR">Desde 2025 aplico o mesmo método à transformação digital de uma transportadora de passageiros no Norte Fluminense: em 8 meses, 60 pessoas saíram do papel e de planilhas legadas para o Microsoft 365, com um ERP construído do zero e sem licença nova. Trabalho com assistência de inteligência artificial e digo isso abertamente; o levantamento, a arquitetura, os testes e a implantação são decisões minhas. Busco posições sêniores em planejamento e gestão de projetos, melhoria de processos e governança operacional, dentro e fora do óleo e gás.</p><p lang="en">Since 2025 I have applied the same method to the digital transformation of a passenger transport company in northern Rio de Janeiro state: in 8 months, 60 people moved from paper and legacy spreadsheets to Microsoft 365, on an ERP built from zero with no new licenses. I work with AI assistance and say so openly; discovery, architecture, testing and rollout are my decisions. I am open to senior roles in project planning and management, process improvement and operational governance, within and beyond oil and gas.</p>
+        </div>
+
+
+        <details class="more"><summary class="more-btn"><span lang="pt-BR">Ver competências e ferramentas</span><span lang="en">See skills and tools</span></summary><div class="skills">
+          <div><h3><span lang="pt-BR">Planejamento e governança</span><span lang="en">Planning and governance</span></h3><ul class="chips"><li lang="pt-BR">Planejamento &amp; Gestão de Projetos</li><li lang="en">Project planning &amp; management</li><li lang="pt-BR">Controle de Projetos &amp; KPIs</li><li lang="en">Project controls &amp; KPI governance</li><li lang="pt-BR">Controle de Custos &amp; Orçamento</li><li lang="en">Cost control &amp; budgeting</li><li lang="pt-BR">Governança de Fornecedores</li><li lang="en">Supplier governance</li><li lang="pt-BR">Performance de Ativos &amp; Manutenção</li><li lang="en">Asset &amp; maintenance performance</li><li lang="pt-BR">Compliance Regulatório</li><li lang="en">Regulatory compliance</li></ul></div>
+          <div><h3><span lang="pt-BR">Operações e processos</span><span lang="en">Operations and processes</span></h3><ul class="chips"><li lang="pt-BR">Logística Offshore &amp; Supply Chain</li><li lang="en">Offshore logistics &amp; supply chain</li><li lang="pt-BR">Desenho &amp; Otimização de Processos</li><li lang="en">Process design &amp; optimization</li><li lang="pt-BR">Planejamento de Embarcações &amp; Cargas</li><li lang="en">Vessel &amp; cargo planning</li><li lang="pt-BR">Cargas Perigosas (IMDG)</li><li lang="en">Dangerous goods (IMDG)</li><li lang="pt-BR">Transformação Digital (M365)</li><li lang="en">Digital transformation (M365)</li></ul></div>
+          <div><h3><span lang="pt-BR">Ferramentas e sistemas</span><span lang="en">Tools and systems</span></h3><ul class="chips"><li lang="pt-BR">SAP</li><li lang="en">SAP</li><li lang="pt-BR">Power BI</li><li lang="en">Power BI</li><li lang="pt-BR">Microsoft Excel</li><li lang="en">Microsoft Excel</li><li lang="pt-BR">SharePoint · Power Automate · Planner</li><li lang="en">SharePoint · Power Automate · Planner</li><li lang="pt-BR">Microsoft Graph</li><li lang="en">Microsoft Graph</li><li lang="pt-BR">Make</li><li lang="en">Make</li><li lang="pt-BR">Supabase</li><li lang="en">Supabase</li><li lang="pt-BR">Twilio &amp; API do WhatsApp</li><li lang="en">Twilio &amp; WhatsApp API</li><li lang="pt-BR">IA Aplicada (Análise &amp; Classificação)</li><li lang="en">Applied AI (analysis &amp; classification)</li></ul></div>
+        </div></details>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="statement" aria-label="Declaração">
+  <!-- offshore-day.jpg (1600×1000). Exercício de homem ao mar com FRB, foto do autor. -->
+  <img src="assets/img/offshore-day.jpg" alt="" width="1600" height="1000" loading="lazy">
+  <div class="container">
+    <blockquote><span lang="pt-BR">O que aprendi no mar vale em qualquer operação: procedimento claro, registro de tudo e ninguém trabalhando no escuro.</span><span lang="en">What I learned offshore holds in any operation: clear procedures, everything on record and nobody working in the dark.</span></blockquote>
+    <cite>Rafael Oertel</cite>
+  </div>
+</section>
+<nav class="pager container" aria-label="Páginas · Pages 2/6"><a class="prev" href="#inicio"><small><span lang="pt-BR">Anterior</span><span lang="en">Previous</span></small><b>← <span lang="pt-BR">Início</span><span lang="en">Home</span></b></a><span class="count">2 / 6</span><a class="next" href="#metodo"><small><span lang="pt-BR">Próxima</span><span lang="en">Next</span></small><b><span lang="pt-BR">Como trabalho</span><span lang="en">How I work</span> →</b></a></nav>
+</div>
+<!-- ============================ PÁGINA 3: COMO TRABALHO ============================ -->
+<div class="pg" data-pg="metodo">
 <section class="section" id="metodo">
   <div class="container">
     <div class="section-head">
@@ -615,7 +705,102 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
     </div>
   </div>
 </section>
-<!-- ============================ SOBRE ============================ -->
+<nav class="pager container" aria-label="Páginas · Pages 3/6"><a class="prev" href="#sobre"><small><span lang="pt-BR">Anterior</span><span lang="en">Previous</span></small><b>← <span lang="pt-BR">Sobre</span><span lang="en">About</span></b></a><span class="count">3 / 6</span><a class="next" href="#trajetoria"><small><span lang="pt-BR">Próxima</span><span lang="en">Next</span></small><b><span lang="pt-BR">Trajetória</span><span lang="en">Experience</span> →</b></a></nav>
+</div>
+<!-- ============================ PÁGINA 4: TRAJETÓRIA ============================ -->
+<div class="pg" data-pg="trajetoria">
+<section class="section" id="trajetoria">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span lang="pt-BR">Trajetória</span><span lang="en">Experience</span></p>
+      <h2 class="h2"><span lang="pt-BR">Da consultoria ao offshore, do offshore à transformação digital.</span><span lang="en">From consulting to offshore, from offshore to digital transformation.</span></h2>
+      <p class="lead"><span lang="pt-BR">Treze anos em quatro casas (Afferolab, a conta Equinor via Accenture, a SBM Offshore e uma transportadora regional), sempre entre o planejamento e a operação.</span><span lang="en">Thirteen years across four houses (Afferolab, the Equinor account via Accenture, SBM Offshore and a regional transport company), always between planning and operations.</span></p>
+    </div>
+    <div class="timeline">
+      <article class="tl">
+        <div class="when"><span lang="pt-BR">set 2025 — hoje</span><span lang="en">Sep 2025 — present</span><small data-since="2025-09"><span lang="pt-BR">1 ano · 3 meses</span><span lang="en">1 yr · 3 mos</span></small></div>
+        <div class="rail"><i></i></div>
+        <div class="body">
+          <h3><span lang="pt-BR">Líder de Operações e Compliance</span><span lang="en">Operations &amp; Compliance Lead</span></h3>
+          <p class="org"><span lang="pt-BR">Nova Macabu · transporte de passageiros (13 ônibus, 60 funcionários) · Macaé, RJ · autônomo, híbrido</span><span lang="en">Nova Macabu · passenger transport (13 buses, 60 employees) · Macaé, RJ · self-employed, hybrid</span></p>
+          <ul><li lang="pt-BR">Implantei o primeiro ambiente Microsoft 365 da empresa em 8 meses, migrando do papel e de planilhas legadas, e estruturei o SharePoint como a base de dados da operação (sites por área, bibliotecas, fluxos).</li><li lang="en">Deployed the company's first Microsoft 365 environment in 8 months, migrating from paper and legacy spreadsheets, and structured SharePoint as the operation's data layer (department sites, libraries, data flows).</li></ul><details class="more"><summary class="more-btn"><span lang="pt-BR">Ver mais 5</span><span lang="en">See 5 more</span></summary><ul><li lang="pt-BR">Projetei e construí o ERP NMB, aplicação web sem licença adicional: login Microsoft 365, SharePoint via Microsoft Graph como base de dados, permissões por módulo com acesso sincronizado a grupos de segurança do Entra ID e automações no Make. Entregas em versões curtas, cada uma com testes automatizados e revisão independente.</li><li lang="en">Designed and built ERP NMB, a web application with no extra licensing: Microsoft 365 sign-in, SharePoint via Microsoft Graph as the data layer, per-module permissions with access synced from Entra ID security groups, and automations in Make. Shipped in short releases, each with automated tests and an independent review.</li><li lang="pt-BR">Financeiro: primeiro fluxo estruturado de Contas a Pagar, com aprovações automáticas e alertas de vencimento; gestão de dívidas com 9 carteiras de passivos (planejado × realizado, curva ABC, renegociação, simulação de caixa), hoje dentro do ERP; terceiros, cadastros mestres, DRE gerencial, CAPEX/OPEX e painel executivo.</li><li lang="en">Finance: the company's first structured Accounts Payable flow, with automated approvals and overdue alerts; debt management across 9 liability portfolios (planned vs. actual, ABC analysis, renegotiation, cash-flow simulation), now inside the ERP; third parties, master data, management P&amp;L, CAPEX/OPEX and an executive dashboard.</li><li lang="pt-BR">Operação e frota: horários, tarifas, passageiros e itinerários; documentos, inspeções, higienização e multas dos veículos; relatórios ao órgão regulador e acompanhamento do diário oficial; tarefas e ocorrências.</li><li lang="en">Operations and fleet: timetables, fares, passengers and itineraries; vehicle documents, inspections, sanitation and traffic fines; regulator reports and official-gazette monitoring; tasks and incidents.</li><li lang="pt-BR">RH e compliance: ponto, consumíveis, avaliações de desempenho, cadastro de funcionários com dados restritos (LGPD), planejamento de adequação da escala 6x1 e revisão de compliance assistida por IA em mais de 10 anos de comunicações corporativas.</li><li lang="en">HR and compliance: time clock, consumables, performance reviews, employee records with restricted (LGPD) data, 6x1 work-schedule adequacy planning and an AI-assisted compliance review of 10+ years of corporate communications.</li><li lang="pt-BR">Unifiquei 3 canais de atendimento (WhatsApp via Twilio, site e e-mail) em uma base única de chamados no SharePoint, com classificação por IA, protocolos únicos e painéis com KPIs em tempo real (tempo de primeira resposta, SLA, envelhecimento do backlog).</li><li lang="en">Unified 3 customer-service channels (WhatsApp via Twilio, web and e-mail) into one SharePoint ticket base, with AI classification, unique protocols and dashboards with live KPIs (first-response time, SLA, backlog aging).</li></ul></details>
+        </div>
+      </article>
+      <article class="tl">
+        <div class="when"><span lang="pt-BR">fev 2024 — ago 2025</span><span lang="en">Feb 2024 — Aug 2025</span><small><span lang="pt-BR">1 ano · 7 meses</span><span lang="en">1 yr · 7 mos</span></small></div>
+        <div class="rail"><i></i></div>
+        <div class="body">
+          <h3><span lang="pt-BR">Especialista em Gestão de Projetos</span><span lang="en">Project Management Specialist</span></h3>
+          <p class="org"><span lang="pt-BR">SBM Offshore · operações de FPSO, Brasil · Rio de Janeiro · tempo integral, híbrido</span><span lang="en">SBM Offshore · FPSO operations, Brazil · Rio de Janeiro · full-time, hybrid</span></p>
+          <ul><li lang="pt-BR">Construí e mantive os KPIs de disponibilidade, confiabilidade e manutenção usados pelas lideranças de engenharia e operações para priorizar o backlog e planejar intervenções.</li><li lang="en">Built and maintained the uptime, reliability and maintenance KPIs that engineering and operations leadership used to prioritize backlog and plan interventions.</li></ul><details class="more"><summary class="more-btn"><span lang="pt-BR">Ver mais 3</span><span lang="en">See 3 more</span></summary><ul><li lang="pt-BR">Estruturei o acompanhamento de manutenção preventiva e corretiva por governança de KPIs, melhorando a priorização do backlog e a disponibilidade dos ativos.</li><li lang="en">Structured preventive and corrective maintenance tracking through KPI governance, improving backlog prioritisation and asset availability.</li><li lang="pt-BR">Alinhei engenharia, manutenção e suprimentos para manter ordens de serviço críticas e materiais dentro das janelas operacionais, garantindo continuidade da produção.</li><li lang="en">Aligned engineering, maintenance and procurement to keep critical work orders and materials within operational windows, ensuring continuity of production.</li><li lang="pt-BR">Padronizei modelos e relatórios de controle de projetos, elevando a integridade dos dados e a confiabilidade dos reportes executivos.</li><li lang="en">Standardized project-control templates and reporting, improving data integrity and the reliability of executive reports.</li></ul></details>
+        </div>
+      </article>
+      <article class="tl">
+        <div class="when"><span lang="pt-BR">fev 2019 — jan 2024</span><span lang="en">Feb 2019 — Jan 2024</span><small><span lang="pt-BR">5 anos</span><span lang="en">5 yrs</span></small></div>
+        <div class="rail"><i></i></div>
+        <div class="body">
+          <h3><span lang="pt-BR">Coordenador de Operações Logísticas Offshore</span><span lang="en">Offshore Logistics Operations Coordinator</span></h3>
+          <p class="org"><span lang="pt-BR">Accenture, a serviço da Equinor · suprimento offshore da Equinor Brasil · Rio de Janeiro · tempo integral, embarcado em escala 14x14 (2019–2024)</span><span lang="en">Accenture, on behalf of Equinor · Equinor Brazil offshore supply chain · Rio de Janeiro · full-time, 14x14 offshore rotation (2019–2024)</span></p>
+          <ul><li lang="pt-BR">Liderei a governança integrada de planejamento, gestão de materiais e monitoramento de performance das operações de suprimento, reportando à gerência de logística e operações da Equinor.</li><li lang="en">Led integrated governance across planning, material management and performance monitoring of supply operations, reporting to Equinor's logistics and operations management.</li></ul><details class="more"><summary class="more-btn"><span lang="pt-BR">Ver mais 3</span><span lang="en">See 3 more</span></summary><ul><li lang="pt-BR">Geri o fluxo de materiais de ponta a ponta, alinhado aos cronogramas de produção e perfuração, mantendo equipamentos críticos e consumíveis no prazo nas unidades offshore.</li><li lang="en">Managed end-to-end material flow aligned with production and drilling schedules, keeping critical equipment and consumables on time to offshore units.</li><li lang="pt-BR">Reduzi custos logísticos otimizando a programação de embarcações e reestruturando o fluxo de materiais, com mais consistência de OTIF e transparência de custos.</li><li lang="en">Reduced logistics costs by optimising vessel scheduling and restructuring material flows, improving OTIF consistency and cost transparency.</li><li lang="pt-BR">Embarcado em escala 14x14: quatro anos em plataformas fixas, coordenando principalmente a logística das operações de perfuração, e um ano de apoio às campanhas de manutenção de um FPSO a partir de flotel; supervisionei a bordo as operações de convés e carga, incluindo cargas perigosas (IMDG), e fortaleci os controles de compliance em SAP e a governança de fornecedores.</li><li lang="en">On 14x14 rotation: four years on fixed platforms, primarily coordinating logistics for drilling operations, and one year supporting FPSO maintenance campaigns from a flotel; supervised deck and cargo operations on board, including dangerous goods (IMDG), and strengthened SAP-based compliance controls and supplier governance.</li></ul></details>
+        </div>
+      </article>
+      <article class="tl">
+        <div class="when"><span lang="pt-BR">nov 2017 — jan 2019</span><span lang="en">Nov 2017 — Jan 2019</span><small><span lang="pt-BR">1 ano · 3 meses</span><span lang="en">1 yr · 3 mos</span></small></div>
+        <div class="rail"><i></i></div>
+        <div class="body">
+          <h3><span lang="pt-BR">Analista Marítimo</span><span lang="en">Marine Analyst</span></h3>
+          <p class="org"><span lang="pt-BR">Accenture, a serviço da Equinor · Rio de Janeiro · promovido a coordenador em 15 meses</span><span lang="en">Accenture, on behalf of Equinor · Rio de Janeiro · promoted to coordinator within 15 months</span></p>
+          <ul><li lang="pt-BR">Planejei a programação de embarcações de suprimento e os manifestos de carga (convés, granéis, cargas perigosas) entre a base onshore e as unidades offshore, alinhados às demandas de produção e perfuração.</li><li lang="en">Planned supply-vessel schedules and cargo manifests (deck cargo, bulk, dangerous goods) between the onshore base and offshore units, aligned with production and drilling demands.</li></ul><details class="more"><summary class="more-btn"><span lang="pt-BR">Ver mais 1</span><span lang="en">See 1 more</span></summary><ul><li lang="pt-BR">Construí relatórios de KPIs logísticos (utilização de embarcações, OTIF, backlog de cargas) em Excel e Power BI e processei transações de materiais e cargas no SAP para rastreamento e faturamento.</li><li lang="en">Built logistics KPI reports (vessel utilization, OTIF, cargo backlog) in Excel and Power BI and processed material and cargo transactions in SAP for tracking and invoicing.</li></ul></details>
+        </div>
+      </article>
+      <article class="tl">
+        <div class="when"><span lang="pt-BR">out 2012 — out 2016</span><span lang="en">Oct 2012 — Oct 2016</span><small><span lang="pt-BR">4 anos · 1 mês</span><span lang="en">4 yrs · 1 mo</span></small></div>
+        <div class="rail"><i></i></div>
+        <div class="body">
+          <h3><span lang="pt-BR">Analista de Gestão de Projetos</span><span lang="en">Project Management Analyst</span></h3>
+          <p class="org"><span lang="pt-BR">Afferolab · educação corporativa e consultoria · Rio de Janeiro · tempo integral, presencial</span><span lang="en">Afferolab · corporate education &amp; consulting · Rio de Janeiro · full-time, on-site</span></p>
+          <ul><li lang="pt-BR">Desenvolvi e monitorei KPIs de performance financeira, produtividade e serviços terceirizados em um portfólio de projetos, incluindo a conta VALE (mais de 40% do portfólio).</li><li lang="en">Developed and monitored KPIs for financial performance, productivity and outsourced services across a project portfolio, including the VALE account (over 40% of the portfolio).</li></ul><details class="more"><summary class="more-btn"><span lang="pt-BR">Ver mais 2</span><span lang="en">See 2 more</span></summary><ul><li lang="pt-BR">Geri orçamentos e despesas reembolsáveis como interface financeira entre Comercial, Logística e Suprimentos; substituí planilhas manuais por reportes mensais consolidados e dashboards para a liderança.</li><li lang="en">Managed project budgets and reimbursable expenses as the financial interface between Sales, Logistics and Procurement; replaced manual spreadsheets with consolidated monthly reporting and dashboards for leadership.</li><li lang="pt-BR">Responsável pelos frameworks de análise financeira das iniciativas mensais de redução de custos, incluindo redução de 2% nas despesas reembolsáveis.</li><li lang="en">Owned the financial-analysis frameworks behind recurring monthly cost-reduction initiatives, including a 2% reduction in reimbursable expenses.</li></ul></details>
+        </div>
+      </article>
+    </div>
+
+    <div class="edu">
+      <div><h3><span lang="pt-BR">Formação</span><span lang="en">Education</span></h3><ul>
+        <li><b><span lang="pt-BR">Pós-graduação em Engenharia de Petróleo (Perfuração)</span><span lang="en">Post-graduate in Petroleum Engineering (Drilling Operations)</span></b><span>Universidade Federal do Rio de Janeiro (UFRJ) · 2015 – 2016</span></li>
+        <li><b><span lang="pt-BR">Bacharelado em Engenharia de Produção</span><span lang="en">B.Eng., Production Engineering</span></b><span>Universidade Gama Filho · 2008 – 2014</span></li>
+      </ul></div>
+      <div><h3><span lang="pt-BR">Certificações</span><span lang="en">Certifications</span></h3><ul>
+        <li><b>CBSP</b><span><span lang="pt-BR">Segurança Básica de Plataforma · válido até jun 2029</span><span lang="en">Offshore Basic Safety Training · valid to Jun 2029</span></span></li>
+        <li><b>HUET</b><span><span lang="pt-BR">Escape de Helicóptero Submerso · válido até mai 2028</span><span lang="en">Helicopter Underwater Escape Training · valid to May 2028</span></span></li>
+      </ul></div>
+      <div><h3><span lang="pt-BR">Idiomas</span><span lang="en">Languages</span></h3><ul class="langs">
+        <li><b><span lang="pt-BR">Português</span><span lang="en">Portuguese</span></b><span><span lang="pt-BR">nativo</span><span lang="en">native</span></span></li>
+        <li><b><span lang="pt-BR">Inglês</span><span lang="en">English</span></b><span><span lang="pt-BR">fluente</span><span lang="en">fluent</span></span></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="campo" aria-labelledby="field-h">
+  <div class="container">
+    <div class="field">
+      <div class="field-head">
+        <h3 id="field-h"><span lang="pt-BR">Em campo</span><span lang="en">In the field</span></h3>
+        <p lang="pt-BR">Cinco anos de embarque em escala 14x14, de 2019 a 2024, deram a base de segurança e procedimento que levo a qualquer operação. Fotos do autor; rostos de colegas e marcas foram desfocados.</p><p lang="en">Five years on 14x14 offshore rotation, from 2019 to 2024, gave me the safety and procedure foundation I bring to any operation. Author’s photos; colleagues’ faces and brand marks have been blurred.</p>
+      </div>
+      <div class="field-grid">
+        <figure><img src="assets/img/field-frb-platform.jpg" alt="Rafael a bordo do barco de resgate rápido, com capacete, colete e uma plataforma ao fundo" data-alt-en="Rafael aboard the fast rescue boat, in hard hat and life vest, with a platform in the background" width="1024" height="768" loading="lazy"><figcaption><span lang="pt-BR">A bordo do FRB, barco de resgate rápido, a caminho da plataforma.</span><span lang="en">Aboard the FRB, the fast rescue boat, on the way to the platform.</span></figcaption></figure>
+        <figure><img src="assets/img/field-deck.jpg" alt="Rafael de macacão e capacete no convés, com embarcação de apoio ao fundo" data-alt-en="Rafael in coveralls and hard hat on deck, supply vessel in the background" width="1200" height="1600" loading="lazy"><figcaption><span lang="pt-BR">Operação de convés com embarcação de apoio ao lado.</span><span lang="en">Deck operation with a supply vessel alongside.</span></figcaption></figure>
+        <figure><img src="assets/img/field-drill.jpg" alt="Equipe de brigada em simulado de resgate no convés" data-alt-en="Emergency team during a rescue drill on deck" width="1600" height="900" loading="lazy"><figcaption><span lang="pt-BR">Simulado de resgate da brigada de emergência.</span><span lang="en">Emergency team rescue drill.</span></figcaption></figure>
+        <figure><img src="assets/img/field-pipes.jpg" alt="Convés de carga visto de cima, com tubos, cestas e contêineres" data-alt-en="Cargo deck seen from above, with pipes, baskets and containers" width="1600" height="901" loading="lazy"><figcaption><span lang="pt-BR">Convés de carga: tubulares, cestas e contêineres.</span><span lang="en">Cargo deck: tubulars, baskets and containers.</span></figcaption></figure>
+      </div>
+    </div>
+
+  </div>
+</section>
+<nav class="pager container" aria-label="Páginas · Pages 4/6"><a class="prev" href="#metodo"><small><span lang="pt-BR">Anterior</span><span lang="en">Previous</span></small><b>← <span lang="pt-BR">Como trabalho</span><span lang="en">How I work</span></b></a><span class="count">4 / 6</span><a class="next" href="#erp"><small><span lang="pt-BR">Próxima</span><span lang="en">Next</span></small><b><span lang="pt-BR">Estudo de caso</span><span lang="en">Case study</span> →</b></a></nav>
+</div>
+<!-- ============================ PÁGINA 5: ESTUDO DE CASO ============================ -->
+<div class="pg" data-pg="erp">
 <section class="section band" id="erp">
   <div class="container">
     <div class="section-head">
@@ -637,14 +822,14 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
       <div class="kpi"><b>R$&nbsp;0</b><span lang="pt-BR">de software adicional: roda sobre o Microsoft 365 que a empresa já tinha</span><span lang="en">in additional software: it runs on the Microsoft 365 the company already had</span></div>
     </div>
 
-    <!-- Vídeo: o sistema real (v0.14.41), com dados simulados -->
+    <!-- Vídeo v5.1 (25/11/2026): o sistema real (v0.14.106), com dados simulados -->
     <div class="media" id="video">
       <article class="media-card">
-        <div class="frame"><video lang="pt-BR" controls preload="none" playsinline poster="assets/video/erp-nmb-demo-pt.webp" width="1280" height="720" aria-label="Passeio narrado pelo ERP NMB v0.14.41, com dados simulados"><source src="assets/video/erp-nmb-demo-pt.mp4" type="video/mp4"></video><video lang="en" controls preload="none" playsinline poster="assets/video/erp-nmb-demo-en.webp" width="1280" height="720" aria-label="Narrated walk-through of ERP NMB v0.14.41, with simulated data"><source src="assets/video/erp-nmb-demo-en.mp4" type="video/mp4"></video></div>
+        <div class="frame"><video lang="pt-BR" controls preload="none" playsinline poster="assets/video/erp-nmb-demo-pt.webp?v=5.1" width="1280" height="720" aria-label="Passeio narrado pelo ERP NMB v0.14.106, com dados simulados"><source src="assets/video/erp-nmb-demo-pt.mp4?v=5.1" type="video/mp4"></video><video lang="en" controls preload="none" playsinline poster="assets/video/erp-nmb-demo-en.webp?v=5.1" width="1280" height="720" aria-label="Narrated walk-through of ERP NMB v0.14.106, with simulated data"><source src="assets/video/erp-nmb-demo-en.mp4?v=5.1" type="video/mp4"></video></div>
         <div class="txt">
           <p class="eyebrow"><span lang="pt-BR">Resultado</span><span lang="en">Result</span></p>
-          <h3><span lang="pt-BR">O sistema real, em 3 minutos</span><span lang="en">The real system, in 3 minutes</span> <span class="pill pill-dark"><span lang="pt-BR">dados simulados</span><span lang="en">simulated data</span></span></h3>
-          <p lang="pt-BR">O ERP NMB v0.14.41, a versão em uso na Nova Macabu: Contas a Pagar, Fluxo de Caixa, DRE e indicadores, CAPEX/OPEX e plano de investimentos, Gestão de Dívidas, Relatório Executivo, Central de Tarefas, Frota, Consumíveis e permissões. As telas são as do sistema real, publicado e em uso; só a empresa, as pessoas e os valores são fictícios.</p><p lang="en">ERP NMB v0.14.41, the version in use at Nova Macabu: Accounts Payable, Cash Flow, P&amp;L and indicators, CAPEX/OPEX and investment plan, Debt Management, Executive Report, Task Center, Fleet, Consumables and permissions. The screens are those of the real, live system; only the company, people and figures are fictitious.</p>
+          <h3><span lang="pt-BR">O sistema real, em 5 minutos</span><span lang="en">The real system, in 5 minutes</span> <span class="pill pill-dark"><span lang="pt-BR">dados simulados</span><span lang="en">simulated data</span></span></h3>
+          <p lang="pt-BR">O ERP NMB v0.14.106, a versão em uso na Nova Macabu: o Início com o que precisa de você, o Painel de Operação, a Estatística de Passageiros, Contas a Pagar, Fluxo de Caixa, DRE e indicadores, CAPEX/OPEX e plano de investimentos, Frota com a planta e a estrutura do ônibus em 3D, Painel de Infrações, Central do SAC, Procedimentos, Consumíveis, Site Oficial e permissões. As telas são as do sistema real, publicado e em uso; só a empresa, as pessoas e os valores são fictícios.</p><p lang="en">ERP NMB v0.14.106, the version in use at Nova Macabu: the Home page with what needs you, the Operations Dashboard, Passenger Statistics, Accounts Payable, Cash Flow, P&amp;L and indicators, CAPEX/OPEX and investment plan, Fleet with the bus floor plan and 3D structure, Violations Dashboard, Customer Service hub, Procedures, Consumables, Official Website and permissions. The screens are those of the real, live system; only the company, people and figures are fictitious.</p>
           <p class="small" lang="pt-BR">Narração com voz sintética e legendas.</p><p class="small" lang="en">Synthetic voice-over with captions; the interface is shown translated into English (the ERP itself runs in Portuguese).</p>
         </div>
       </article>
@@ -765,7 +950,6 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
     </div>
   </div>
 </section>
-
 <section class="section" id="registro">
   <div class="container">
     <div class="section-head">
@@ -798,147 +982,10 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
     </div>
   </div>
 </section>
-
-<section class="section" id="sobre">
-  <div class="container">
-    <div class="about">
-      <div>
-        <figure class="portrait">
-          <!-- portrait.jpg (900×1200, 3:4). Retrato profissional de estúdio. -->
-          <img src="assets/img/portrait.jpg" alt="Retrato profissional de Rafael Oertel, de camisa jeans e braços cruzados, sorrindo" data-alt-en="Professional portrait of Rafael Oertel in a denim shirt, arms crossed, smiling" width="900" height="1200" loading="lazy">
-          <figcaption><span lang="pt-BR">Rafael Oertel · engenheiro de produção</span><span lang="en">Rafael Oertel · production engineer</span></figcaption>
-        </figure>
-        <dl class="facts">
-          <div><dt><span lang="pt-BR">Base</span><span lang="en">Based in</span></dt><dd><span lang="pt-BR">Niterói, RJ · híbrido com Macaé</span><span lang="en">Niterói, Brazil · hybrid with Macaé</span></dd></div>
-          <div><dt><span lang="pt-BR">Formação</span><span lang="en">Education</span></dt><dd><span lang="pt-BR">Eng. de Produção · pós em Eng. de Petróleo (UFRJ)</span><span lang="en">Production Eng. · post-grad. in Petroleum Eng. (UFRJ)</span></dd></div>
-          <div><dt><span lang="pt-BR">Setores</span><span lang="en">Sectors</span></dt><dd><span lang="pt-BR">Óleo e gás offshore · logística e supply chain · transporte · consultoria corporativa</span><span lang="en">Offshore oil &amp; gas · logistics &amp; supply chain · transport · corporate consulting</span></dd></div>
-          <div><dt><span lang="pt-BR">Certificações</span><span lang="en">Certifications</span></dt><dd>CBSP · HUET</dd></div>
-          <div><dt><span lang="pt-BR">Idiomas</span><span lang="en">Languages</span></dt><dd><span lang="pt-BR">Português · Inglês fluente</span><span lang="en">Portuguese · fluent English</span></dd></div>
-        </dl>
-      </div>
-      <div>
-        <div class="section-head">
-          <p class="eyebrow"><span lang="pt-BR">Sobre</span><span lang="en">About</span></p>
-          <h2 class="h2"><span lang="pt-BR">Gosto de ver a operação funcionar de ponta a ponta: do planejamento à tela de quem decide.</span><span lang="en">I like to see an operation work end to end: from the plan to the decision-maker's screen.</span></h2>
-        </div>
-        <div class="prose">
-          <p lang="pt-BR">Sou engenheiro de produção com 13 anos em planejamento e gestão de projetos, melhoria de processos e governança operacional. Comecei na consultoria, controlando custos e KPIs de um portfólio que incluía a conta VALE. Depois vieram oito anos no óleo e gás offshore: coordenei o suprimento offshore da Equinor no Brasil (via Accenture), com cinco anos embarcado em escala 14x14, e cuidei de KPIs de manutenção e performance de ativos em FPSOs na SBM Offshore. Foram ambientes regulados que formaram minha base em governança de indicadores, controle de custos, cadeia de suprimentos e compliance em SAP.</p><p lang="en">I am a production engineer with 13 years in project planning and management, process improvement and operational governance. I started in consulting, controlling costs and KPIs for a portfolio that included the VALE account. Then came eight years in offshore oil and gas: I coordinated Equinor's offshore supply operations in Brazil (via Accenture), including five years on 14x14 rotation, and looked after maintenance KPIs and asset performance on FPSOs at SBM Offshore. Those regulated environments built my foundation in KPI governance, cost control, supply chain and SAP-based compliance.</p>
-          <p lang="pt-BR">Desde 2025 aplico o mesmo método à transformação digital de uma transportadora de passageiros no Norte Fluminense: em 8 meses, 60 pessoas saíram do papel e de planilhas legadas para o Microsoft 365, com um ERP construído do zero e sem licença nova. Trabalho com assistência de inteligência artificial e digo isso abertamente; o levantamento, a arquitetura, os testes e a implantação são decisões minhas. Busco posições sêniores em planejamento e gestão de projetos, melhoria de processos e governança operacional, dentro e fora do óleo e gás.</p><p lang="en">Since 2025 I have applied the same method to the digital transformation of a passenger transport company in northern Rio de Janeiro state: in 8 months, 60 people moved from paper and legacy spreadsheets to Microsoft 365, on an ERP built from zero with no new licenses. I work with AI assistance and say so openly; discovery, architecture, testing and rollout are my decisions. I am open to senior roles in project planning and management, process improvement and operational governance, within and beyond oil and gas.</p>
-        </div>
-
-
-        <details class="more"><summary class="more-btn"><span lang="pt-BR">Ver competências e ferramentas</span><span lang="en">See skills and tools</span></summary><div class="skills">
-          <div><h3><span lang="pt-BR">Planejamento e governança</span><span lang="en">Planning and governance</span></h3><ul class="chips"><li lang="pt-BR">Planejamento &amp; Gestão de Projetos</li><li lang="en">Project planning &amp; management</li><li lang="pt-BR">Controle de Projetos &amp; KPIs</li><li lang="en">Project controls &amp; KPI governance</li><li lang="pt-BR">Controle de Custos &amp; Orçamento</li><li lang="en">Cost control &amp; budgeting</li><li lang="pt-BR">Governança de Fornecedores</li><li lang="en">Supplier governance</li><li lang="pt-BR">Performance de Ativos &amp; Manutenção</li><li lang="en">Asset &amp; maintenance performance</li><li lang="pt-BR">Compliance Regulatório</li><li lang="en">Regulatory compliance</li></ul></div>
-          <div><h3><span lang="pt-BR">Operações e processos</span><span lang="en">Operations and processes</span></h3><ul class="chips"><li lang="pt-BR">Logística Offshore &amp; Supply Chain</li><li lang="en">Offshore logistics &amp; supply chain</li><li lang="pt-BR">Desenho &amp; Otimização de Processos</li><li lang="en">Process design &amp; optimization</li><li lang="pt-BR">Planejamento de Embarcações &amp; Cargas</li><li lang="en">Vessel &amp; cargo planning</li><li lang="pt-BR">Cargas Perigosas (IMDG)</li><li lang="en">Dangerous goods (IMDG)</li><li lang="pt-BR">Transformação Digital (M365)</li><li lang="en">Digital transformation (M365)</li></ul></div>
-          <div><h3><span lang="pt-BR">Ferramentas e sistemas</span><span lang="en">Tools and systems</span></h3><ul class="chips"><li lang="pt-BR">SAP</li><li lang="en">SAP</li><li lang="pt-BR">Power BI</li><li lang="en">Power BI</li><li lang="pt-BR">Microsoft Excel</li><li lang="en">Microsoft Excel</li><li lang="pt-BR">SharePoint · Power Automate · Planner</li><li lang="en">SharePoint · Power Automate · Planner</li><li lang="pt-BR">Microsoft Graph</li><li lang="en">Microsoft Graph</li><li lang="pt-BR">Make</li><li lang="en">Make</li><li lang="pt-BR">Supabase</li><li lang="en">Supabase</li><li lang="pt-BR">Twilio &amp; API do WhatsApp</li><li lang="en">Twilio &amp; WhatsApp API</li><li lang="pt-BR">IA Aplicada (Análise &amp; Classificação)</li><li lang="en">Applied AI (analysis &amp; classification)</li></ul></div>
-        </div></details>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ DECLARAÇÃO (foto) ============================ -->
-<section class="statement" aria-label="Declaração">
-  <!-- offshore-day.jpg (1600×1000). Exercício de homem ao mar com FRB, foto do autor. -->
-  <img src="assets/img/offshore-day.jpg" alt="" width="1600" height="1000" loading="lazy">
-  <div class="container">
-    <blockquote><span lang="pt-BR">O que aprendi no mar vale em qualquer operação: procedimento claro, registro de tudo e ninguém trabalhando no escuro.</span><span lang="en">What I learned offshore holds in any operation: clear procedures, everything on record and nobody working in the dark.</span></blockquote>
-    <cite>Rafael Oertel</cite>
-  </div>
-</section>
-<!-- ============================ TRAJETÓRIA ============================ -->
-<section class="section" id="trajetoria">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow"><span lang="pt-BR">Trajetória</span><span lang="en">Experience</span></p>
-      <h2 class="h2"><span lang="pt-BR">Da consultoria ao offshore, do offshore à transformação digital.</span><span lang="en">From consulting to offshore, from offshore to digital transformation.</span></h2>
-      <p class="lead"><span lang="pt-BR">Treze anos em quatro casas (Afferolab, a conta Equinor via Accenture, a SBM Offshore e uma transportadora regional), sempre entre o planejamento e a operação.</span><span lang="en">Thirteen years across four houses (Afferolab, the Equinor account via Accenture, SBM Offshore and a regional transport company), always between planning and operations.</span></p>
-    </div>
-    <div class="timeline">
-      <article class="tl">
-        <div class="when"><span lang="pt-BR">set 2025 — hoje</span><span lang="en">Sep 2025 — present</span><small data-since="2025-09"><span lang="pt-BR">1 ano · 3 meses</span><span lang="en">1 yr · 3 mos</span></small></div>
-        <div class="rail"><i></i></div>
-        <div class="body">
-          <h3><span lang="pt-BR">Líder de Operações e Compliance</span><span lang="en">Operations &amp; Compliance Lead</span></h3>
-          <p class="org"><span lang="pt-BR">Nova Macabu · transporte de passageiros (13 ônibus, 60 funcionários) · Macaé, RJ · autônomo, híbrido</span><span lang="en">Nova Macabu · passenger transport (13 buses, 60 employees) · Macaé, RJ · self-employed, hybrid</span></p>
-          <ul><li lang="pt-BR">Implantei o primeiro ambiente Microsoft 365 da empresa em 8 meses, migrando do papel e de planilhas legadas, e estruturei o SharePoint como a base de dados da operação (sites por área, bibliotecas, fluxos).</li><li lang="en">Deployed the company's first Microsoft 365 environment in 8 months, migrating from paper and legacy spreadsheets, and structured SharePoint as the operation's data layer (department sites, libraries, data flows).</li></ul><details class="more"><summary class="more-btn"><span lang="pt-BR">Ver mais 5</span><span lang="en">See 5 more</span></summary><ul><li lang="pt-BR">Projetei e construí o ERP NMB, aplicação web sem licença adicional: login Microsoft 365, SharePoint via Microsoft Graph como base de dados, permissões por módulo com acesso sincronizado a grupos de segurança do Entra ID e automações no Make. Entregas em versões curtas, cada uma com testes automatizados e revisão independente.</li><li lang="en">Designed and built ERP NMB, a web application with no extra licensing: Microsoft 365 sign-in, SharePoint via Microsoft Graph as the data layer, per-module permissions with access synced from Entra ID security groups, and automations in Make. Shipped in short releases, each with automated tests and an independent review.</li><li lang="pt-BR">Financeiro: primeiro fluxo estruturado de Contas a Pagar, com aprovações automáticas e alertas de vencimento; gestão de dívidas com 9 carteiras de passivos (planejado × realizado, curva ABC, renegociação, simulação de caixa), hoje dentro do ERP; terceiros, cadastros mestres, DRE gerencial, CAPEX/OPEX e painel executivo.</li><li lang="en">Finance: the company's first structured Accounts Payable flow, with automated approvals and overdue alerts; debt management across 9 liability portfolios (planned vs. actual, ABC analysis, renegotiation, cash-flow simulation), now inside the ERP; third parties, master data, management P&amp;L, CAPEX/OPEX and an executive dashboard.</li><li lang="pt-BR">Operação e frota: horários, tarifas, passageiros e itinerários; documentos, inspeções, higienização e multas dos veículos; relatórios ao órgão regulador e acompanhamento do diário oficial; tarefas e ocorrências.</li><li lang="en">Operations and fleet: timetables, fares, passengers and itineraries; vehicle documents, inspections, sanitation and traffic fines; regulator reports and official-gazette monitoring; tasks and incidents.</li><li lang="pt-BR">RH e compliance: ponto, consumíveis, avaliações de desempenho, cadastro de funcionários com dados restritos (LGPD), planejamento de adequação da escala 6x1 e revisão de compliance assistida por IA em mais de 10 anos de comunicações corporativas.</li><li lang="en">HR and compliance: time clock, consumables, performance reviews, employee records with restricted (LGPD) data, 6x1 work-schedule adequacy planning and an AI-assisted compliance review of 10+ years of corporate communications.</li><li lang="pt-BR">Unifiquei 3 canais de atendimento (WhatsApp via Twilio, site e e-mail) em uma base única de chamados no SharePoint, com classificação por IA, protocolos únicos e painéis com KPIs em tempo real (tempo de primeira resposta, SLA, envelhecimento do backlog).</li><li lang="en">Unified 3 customer-service channels (WhatsApp via Twilio, web and e-mail) into one SharePoint ticket base, with AI classification, unique protocols and dashboards with live KPIs (first-response time, SLA, backlog aging).</li></ul></details>
-        </div>
-      </article>
-      <article class="tl">
-        <div class="when"><span lang="pt-BR">fev 2024 — ago 2025</span><span lang="en">Feb 2024 — Aug 2025</span><small><span lang="pt-BR">1 ano · 7 meses</span><span lang="en">1 yr · 7 mos</span></small></div>
-        <div class="rail"><i></i></div>
-        <div class="body">
-          <h3><span lang="pt-BR">Especialista em Gestão de Projetos</span><span lang="en">Project Management Specialist</span></h3>
-          <p class="org"><span lang="pt-BR">SBM Offshore · operações de FPSO, Brasil · Rio de Janeiro · tempo integral, híbrido</span><span lang="en">SBM Offshore · FPSO operations, Brazil · Rio de Janeiro · full-time, hybrid</span></p>
-          <ul><li lang="pt-BR">Construí e mantive os KPIs de disponibilidade, confiabilidade e manutenção usados pelas lideranças de engenharia e operações para priorizar o backlog e planejar intervenções.</li><li lang="en">Built and maintained the uptime, reliability and maintenance KPIs that engineering and operations leadership used to prioritize backlog and plan interventions.</li></ul><details class="more"><summary class="more-btn"><span lang="pt-BR">Ver mais 3</span><span lang="en">See 3 more</span></summary><ul><li lang="pt-BR">Estruturei o acompanhamento de manutenção preventiva e corretiva por governança de KPIs, melhorando a priorização do backlog e a disponibilidade dos ativos.</li><li lang="en">Structured preventive and corrective maintenance tracking through KPI governance, improving backlog prioritisation and asset availability.</li><li lang="pt-BR">Alinhei engenharia, manutenção e suprimentos para manter ordens de serviço críticas e materiais dentro das janelas operacionais, garantindo continuidade da produção.</li><li lang="en">Aligned engineering, maintenance and procurement to keep critical work orders and materials within operational windows, ensuring continuity of production.</li><li lang="pt-BR">Padronizei modelos e relatórios de controle de projetos, elevando a integridade dos dados e a confiabilidade dos reportes executivos.</li><li lang="en">Standardized project-control templates and reporting, improving data integrity and the reliability of executive reports.</li></ul></details>
-        </div>
-      </article>
-      <article class="tl">
-        <div class="when"><span lang="pt-BR">fev 2019 — jan 2024</span><span lang="en">Feb 2019 — Jan 2024</span><small><span lang="pt-BR">5 anos</span><span lang="en">5 yrs</span></small></div>
-        <div class="rail"><i></i></div>
-        <div class="body">
-          <h3><span lang="pt-BR">Coordenador de Operações Logísticas Offshore</span><span lang="en">Offshore Logistics Operations Coordinator</span></h3>
-          <p class="org"><span lang="pt-BR">Accenture, a serviço da Equinor · suprimento offshore da Equinor Brasil · Rio de Janeiro · tempo integral, embarcado em escala 14x14 (2019–2024)</span><span lang="en">Accenture, on behalf of Equinor · Equinor Brazil offshore supply chain · Rio de Janeiro · full-time, 14x14 offshore rotation (2019–2024)</span></p>
-          <ul><li lang="pt-BR">Liderei a governança integrada de planejamento, gestão de materiais e monitoramento de performance das operações de suprimento, reportando à gerência de logística e operações da Equinor.</li><li lang="en">Led integrated governance across planning, material management and performance monitoring of supply operations, reporting to Equinor's logistics and operations management.</li></ul><details class="more"><summary class="more-btn"><span lang="pt-BR">Ver mais 3</span><span lang="en">See 3 more</span></summary><ul><li lang="pt-BR">Geri o fluxo de materiais de ponta a ponta, alinhado aos cronogramas de produção e perfuração, mantendo equipamentos críticos e consumíveis no prazo nas unidades offshore.</li><li lang="en">Managed end-to-end material flow aligned with production and drilling schedules, keeping critical equipment and consumables on time to offshore units.</li><li lang="pt-BR">Reduzi custos logísticos otimizando a programação de embarcações e reestruturando o fluxo de materiais, com mais consistência de OTIF e transparência de custos.</li><li lang="en">Reduced logistics costs by optimising vessel scheduling and restructuring material flows, improving OTIF consistency and cost transparency.</li><li lang="pt-BR">Embarcado em escala 14x14: quatro anos em plataformas fixas, coordenando principalmente a logística das operações de perfuração, e um ano de apoio às campanhas de manutenção de um FPSO a partir de flotel; supervisionei a bordo as operações de convés e carga, incluindo cargas perigosas (IMDG), e fortaleci os controles de compliance em SAP e a governança de fornecedores.</li><li lang="en">On 14x14 rotation: four years on fixed platforms, primarily coordinating logistics for drilling operations, and one year supporting FPSO maintenance campaigns from a flotel; supervised deck and cargo operations on board, including dangerous goods (IMDG), and strengthened SAP-based compliance controls and supplier governance.</li></ul></details>
-        </div>
-      </article>
-      <article class="tl">
-        <div class="when"><span lang="pt-BR">nov 2017 — jan 2019</span><span lang="en">Nov 2017 — Jan 2019</span><small><span lang="pt-BR">1 ano · 3 meses</span><span lang="en">1 yr · 3 mos</span></small></div>
-        <div class="rail"><i></i></div>
-        <div class="body">
-          <h3><span lang="pt-BR">Analista Marítimo</span><span lang="en">Marine Analyst</span></h3>
-          <p class="org"><span lang="pt-BR">Accenture, a serviço da Equinor · Rio de Janeiro · promovido a coordenador em 15 meses</span><span lang="en">Accenture, on behalf of Equinor · Rio de Janeiro · promoted to coordinator within 15 months</span></p>
-          <ul><li lang="pt-BR">Planejei a programação de embarcações de suprimento e os manifestos de carga (convés, granéis, cargas perigosas) entre a base onshore e as unidades offshore, alinhados às demandas de produção e perfuração.</li><li lang="en">Planned supply-vessel schedules and cargo manifests (deck cargo, bulk, dangerous goods) between the onshore base and offshore units, aligned with production and drilling demands.</li></ul><details class="more"><summary class="more-btn"><span lang="pt-BR">Ver mais 1</span><span lang="en">See 1 more</span></summary><ul><li lang="pt-BR">Construí relatórios de KPIs logísticos (utilização de embarcações, OTIF, backlog de cargas) em Excel e Power BI e processei transações de materiais e cargas no SAP para rastreamento e faturamento.</li><li lang="en">Built logistics KPI reports (vessel utilization, OTIF, cargo backlog) in Excel and Power BI and processed material and cargo transactions in SAP for tracking and invoicing.</li></ul></details>
-        </div>
-      </article>
-      <article class="tl">
-        <div class="when"><span lang="pt-BR">out 2012 — out 2016</span><span lang="en">Oct 2012 — Oct 2016</span><small><span lang="pt-BR">4 anos · 1 mês</span><span lang="en">4 yrs · 1 mo</span></small></div>
-        <div class="rail"><i></i></div>
-        <div class="body">
-          <h3><span lang="pt-BR">Analista de Gestão de Projetos</span><span lang="en">Project Management Analyst</span></h3>
-          <p class="org"><span lang="pt-BR">Afferolab · educação corporativa e consultoria · Rio de Janeiro · tempo integral, presencial</span><span lang="en">Afferolab · corporate education &amp; consulting · Rio de Janeiro · full-time, on-site</span></p>
-          <ul><li lang="pt-BR">Desenvolvi e monitorei KPIs de performance financeira, produtividade e serviços terceirizados em um portfólio de projetos, incluindo a conta VALE (mais de 40% do portfólio).</li><li lang="en">Developed and monitored KPIs for financial performance, productivity and outsourced services across a project portfolio, including the VALE account (over 40% of the portfolio).</li></ul><details class="more"><summary class="more-btn"><span lang="pt-BR">Ver mais 2</span><span lang="en">See 2 more</span></summary><ul><li lang="pt-BR">Geri orçamentos e despesas reembolsáveis como interface financeira entre Comercial, Logística e Suprimentos; substituí planilhas manuais por reportes mensais consolidados e dashboards para a liderança.</li><li lang="en">Managed project budgets and reimbursable expenses as the financial interface between Sales, Logistics and Procurement; replaced manual spreadsheets with consolidated monthly reporting and dashboards for leadership.</li><li lang="pt-BR">Responsável pelos frameworks de análise financeira das iniciativas mensais de redução de custos, incluindo redução de 2% nas despesas reembolsáveis.</li><li lang="en">Owned the financial-analysis frameworks behind recurring monthly cost-reduction initiatives, including a 2% reduction in reimbursable expenses.</li></ul></details>
-        </div>
-      </article>
-    </div>
-
-    <div class="edu">
-      <div><h3><span lang="pt-BR">Formação</span><span lang="en">Education</span></h3><ul>
-        <li><b><span lang="pt-BR">Pós-graduação em Engenharia de Petróleo (Perfuração)</span><span lang="en">Post-graduate in Petroleum Engineering (Drilling Operations)</span></b><span>Universidade Federal do Rio de Janeiro (UFRJ) · 2015 – 2016</span></li>
-        <li><b><span lang="pt-BR">Bacharelado em Engenharia de Produção</span><span lang="en">B.Eng., Production Engineering</span></b><span>Universidade Gama Filho · 2008 – 2014</span></li>
-      </ul></div>
-      <div><h3><span lang="pt-BR">Certificações</span><span lang="en">Certifications</span></h3><ul>
-        <li><b>CBSP</b><span><span lang="pt-BR">Segurança Básica de Plataforma · válido até jun 2029</span><span lang="en">Offshore Basic Safety Training · valid to Jun 2029</span></span></li>
-        <li><b>HUET</b><span><span lang="pt-BR">Escape de Helicóptero Submerso · válido até mai 2028</span><span lang="en">Helicopter Underwater Escape Training · valid to May 2028</span></span></li>
-      </ul></div>
-      <div><h3><span lang="pt-BR">Idiomas</span><span lang="en">Languages</span></h3><ul class="langs">
-        <li><b><span lang="pt-BR">Português</span><span lang="en">Portuguese</span></b><span><span lang="pt-BR">nativo</span><span lang="en">native</span></span></li>
-        <li><b><span lang="pt-BR">Inglês</span><span lang="en">English</span></b><span><span lang="pt-BR">fluente</span><span lang="en">fluent</span></span></li>
-      </ul></div>
-    </div>
-  </div>
-</section>
-<!-- ============================ PROJETO ERP ============================ -->
-<!-- ============================ REGISTRO DE MARCOS ============================ -->
-<!-- ============================ EM CAMPO ============================ -->
-<section class="section" id="campo" aria-labelledby="field-h">
-  <div class="container">
-    <div class="field">
-      <div class="field-head">
-        <h3 id="field-h"><span lang="pt-BR">Em campo</span><span lang="en">In the field</span></h3>
-        <p lang="pt-BR">Cinco anos de embarque em escala 14x14, de 2019 a 2024, deram a base de segurança e procedimento que levo a qualquer operação. Fotos do autor; rostos de colegas e marcas foram desfocados.</p><p lang="en">Five years on 14x14 offshore rotation, from 2019 to 2024, gave me the safety and procedure foundation I bring to any operation. Author’s photos; colleagues’ faces and brand marks have been blurred.</p>
-      </div>
-      <div class="field-grid">
-        <figure><img src="assets/img/field-frb-platform.jpg" alt="Rafael a bordo do barco de resgate rápido, com capacete, colete e uma plataforma ao fundo" data-alt-en="Rafael aboard the fast rescue boat, in hard hat and life vest, with a platform in the background" width="1024" height="768" loading="lazy"><figcaption><span lang="pt-BR">A bordo do FRB, barco de resgate rápido, a caminho da plataforma.</span><span lang="en">Aboard the FRB, the fast rescue boat, on the way to the platform.</span></figcaption></figure>
-        <figure><img src="assets/img/field-deck.jpg" alt="Rafael de macacão e capacete no convés, com embarcação de apoio ao fundo" data-alt-en="Rafael in coveralls and hard hat on deck, supply vessel in the background" width="1200" height="1600" loading="lazy"><figcaption><span lang="pt-BR">Operação de convés com embarcação de apoio ao lado.</span><span lang="en">Deck operation with a supply vessel alongside.</span></figcaption></figure>
-        <figure><img src="assets/img/field-drill.jpg" alt="Equipe de brigada em simulado de resgate no convés" data-alt-en="Emergency team during a rescue drill on deck" width="1600" height="900" loading="lazy"><figcaption><span lang="pt-BR">Simulado de resgate da brigada de emergência.</span><span lang="en">Emergency team rescue drill.</span></figcaption></figure>
-        <figure><img src="assets/img/field-pipes.jpg" alt="Convés de carga visto de cima, com tubos, cestas e contêineres" data-alt-en="Cargo deck seen from above, with pipes, baskets and containers" width="1600" height="901" loading="lazy"><figcaption><span lang="pt-BR">Convés de carga: tubulares, cestas e contêineres.</span><span lang="en">Cargo deck: tubulars, baskets and containers.</span></figcaption></figure>
-      </div>
-    </div>
-
-  </div>
-</section>
-<!-- ============================ CONTATO ============================ -->
+<nav class="pager container" aria-label="Páginas · Pages 5/6"><a class="prev" href="#trajetoria"><small><span lang="pt-BR">Anterior</span><span lang="en">Previous</span></small><b>← <span lang="pt-BR">Trajetória</span><span lang="en">Experience</span></b></a><span class="count">5 / 6</span><a class="next" href="#contato"><small><span lang="pt-BR">Próxima</span><span lang="en">Next</span></small><b><span lang="pt-BR">Contato</span><span lang="en">Contact</span> →</b></a></nav>
+</div>
+<!-- ============================ PÁGINA 6: CONTATO ============================ -->
+<div class="pg" data-pg="contato">
 <section class="section" id="contato">
   <div class="container">
     <div class="contact">
@@ -977,20 +1024,20 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
     </div>
   </div>
 </section>
+<nav class="pager container" aria-label="Páginas · Pages 6/6"><a class="prev" href="#erp"><small><span lang="pt-BR">Anterior</span><span lang="en">Previous</span></small><b>← <span lang="pt-BR">Estudo de caso</span><span lang="en">Case study</span></b></a><span class="count">6 / 6</span><a class="next" href="#inicio"><small><span lang="pt-BR">Voltar ao</span><span lang="en">Back to</span></small><b><span lang="pt-BR">Início</span><span lang="en">Home</span> ↺</b></a></nav>
+</div>
 </main>
-<nav class="sidenav" id="sidenav" aria-label="Índice da página · Page index"><a href="#metodo"><span lang="pt-BR">Método</span><span lang="en">Method</span></a><a href="#erp"><span lang="pt-BR">Projeto ERP</span><span lang="en">ERP project</span></a><a href="#registro"><span lang="pt-BR">Registro</span><span lang="en">Log</span></a><a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a><a href="#trajetoria"><span lang="pt-BR">Trajetória</span><span lang="en">Experience</span></a><a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a></nav>
-<div class="mbar" id="mbar"><a class="s" lang="pt-BR" href="assets/cv/Rafael_Oertel_CV_PT.pdf">Currículo (PDF)</a><a class="s" lang="en" href="assets/cv/Rafael_Oertel_CV_EN.pdf">Résumé (PDF)</a><a class="p" href="#contato"><span lang="pt-BR">Falar comigo</span><span lang="en">Get in touch</span></a></div>
 
 <!-- ============================ RODAPÉ ============================ -->
 <footer class="footer">
   <div class="container">
     <div class="row">
       <a class="brand" href="#inicio"><svg viewBox="6 6 52 52" aria-hidden="true"><path d="M32.0 8.0L52.78 20.0L32.0 32.0L11.22 20.0Z" class="mk-top"/><path d="M11.22 44.0L32.0 56.0L32.0 32.0L11.22 20.0Z" class="mk-left"/><path d="M52.78 44.0L32.0 56.0L32.0 32.0L52.78 20.0Z" class="mk-right"/><path d="M15.79 29.84L32.0 39.2L32.0 41.36L15.79 32.0Z" class="mk-bar"/><path d="M32.0 39.2L35.74 37.04L35.74 39.2L32.0 41.36Z" class="mk-bar2"/><path d="M21.61 37.76L32.0 43.76L32.0 45.92L21.61 39.92Z" class="mk-bar"/><path d="M32.0 43.76L41.35 38.36L41.35 40.52L32.0 45.92Z" class="mk-bar2"/><path d="M27.01 45.44L32.0 48.32L32.0 50.48L27.01 47.6Z" class="mk-bar"/><path d="M32.0 48.32L46.55 39.92L46.55 42.08L32.0 50.48Z" class="mk-bar2"/><path d="M32.0 33.92L32.0 54.08" fill="none" class="mk-line" stroke-dasharray="2.4 1.8"/></svg><span>Rafael Oertel</span></a>
-      <nav class="fnav" aria-label="Rodapé"><a href="#metodo"><span lang="pt-BR">Método</span><span lang="en">Method</span></a><a href="#erp"><span lang="pt-BR">Projeto ERP</span><span lang="en">ERP project</span></a><a href="#registro"><span lang="pt-BR">Registro</span><span lang="en">Log</span></a><a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a><a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a></nav>
+      <nav class="fnav" aria-label="Rodapé"><a href="#inicio"><span lang="pt-BR">Início</span><span lang="en">Home</span></a><a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a><a href="#metodo"><span lang="pt-BR">Como trabalho</span><span lang="en">How I work</span></a><a href="#trajetoria"><span lang="pt-BR">Trajetória</span><span lang="en">Experience</span></a><a href="#erp"><span lang="pt-BR">Estudo de caso</span><span lang="en">Case study</span></a><a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a></nav>
     </div>
-    <p class="fine"><span lang="pt-BR">© <span class="ano">2026</span> Rafael Oertel. Site feito à mão em HTML, sem rastreadores, com assistência de inteligência artificial; o conteúdo e as decisões são meus. Versão 0.5.19 do site · atualizado em 24 de novembro de 2026.</span><span lang="en">© <span class="ano">2026</span> Rafael Oertel. Hand-built HTML site, no trackers, made with AI assistance; the content and the decisions are mine. Site version 0.5.19 · updated 24 November 2026.</span></p>
+    <p class="fine"><span lang="pt-BR">© <span class="ano">2026</span> Rafael Oertel. Site feito à mão em HTML, sem rastreadores, com assistência de inteligência artificial; o conteúdo e as decisões são meus. Versão 0.6.0 do site · atualizado em 25 de novembro de 2026.</span><span lang="en">© <span class="ano">2026</span> Rafael Oertel. Hand-built HTML site, no trackers, made with AI assistance; the content and the decisions are mine. Site version 0.6.0 · updated 25 November 2026.</span></p>
   </div>
-  <a class="totop" id="totop" href="#inicio" aria-label="Voltar ao topo · Back to top"><span aria-hidden="true">↑</span></a>
+  <a class="totop" id="totop" href="#topo" aria-label="Voltar ao topo · Back to top"><span aria-hidden="true">↑</span></a>
 </footer>
 <div class="review-badge" aria-hidden="true"><span lang="pt-BR">modo revisão: itens em amarelo são para confirmar</span><span lang="en">review mode: items in yellow are to be confirmed</span></div>
 <script>
@@ -1014,7 +1061,7 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
     document.querySelectorAll('img[data-alt-en]').forEach(function(im){ if(!im.dataset.altPt){im.dataset.altPt=im.getAttribute('alt');} im.setAttribute('alt', l==='en'?im.dataset.altEn:im.dataset.altPt); });
     document.querySelectorAll('.copy').forEach(function(b){ if(!b.getAttribute('data-done')) b.textContent=STR[l].copy; });
     document.querySelectorAll('video').forEach(function(v){ try{ v.pause(); }catch(e){} });
-    if(remember){ try{ localStorage.setItem('lang',l); }catch(e){} try{ history.replaceState(null,'','#'+l); }catch(e){} }
+    if(remember){ try{ localStorage.setItem('lang',l); }catch(e){}  }
   }
   setLang(pick(), false);
   langBtn.addEventListener('click',function(){ setLang(html.getAttribute('data-lang')==='pt'?'en':'pt', true); });
@@ -1024,19 +1071,33 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
   var totop=document.getElementById('totop'), ticking=false;
   var sidenav=document.getElementById('sidenav'), mbar=document.getElementById('mbar'), contato=document.getElementById('contato'), heroEl=document.getElementById('inicio');
   function navAids(y){ var past=y>(heroEl?heroEl.offsetHeight*0.7:600); var nearEnd=contato?contato.getBoundingClientRect().top<window.innerHeight*0.75:false; if(sidenav){sidenav.classList.toggle('on',past);} if(mbar){var on=past&&!nearEnd; mbar.classList.toggle('on',on); document.body.classList.toggle('mbar-on',on);} }
-  function onScroll(){ var y=window.scrollY; navAids(y); if(y>40){header.classList.add('scrolled');}else{header.classList.remove('scrolled');} if(totop){ if(y>900){totop.classList.add('on');}else{totop.classList.remove('on');} } ticking=false; }
+  function onScroll(){ var y=window.scrollY; navAids(y); if(y>40||(html.getAttribute('data-pg')||'inicio')!=='inicio'||(html.classList.contains('pages')&&window.innerWidth<=1160)){header.classList.add('scrolled');}else{header.classList.remove('scrolled');} if(totop){ if(y>900){totop.classList.add('on');}else{totop.classList.remove('on');} } ticking=false; }
   onScroll(); window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(onScroll); } },{passive:true});
-  // ---- seção ativa no menu (scroll spy)
-  var links=Array.prototype.slice.call(document.querySelectorAll('#nav a[href^="#"], #sidenav a')).filter(function(a){return !a.classList.contains('btn');});
-  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));}).filter(function(s,i,arr){return s && arr.indexOf(s)===i;});
-  if('IntersectionObserver' in window && secs.length){
-    var current=null;
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ current=e.target.id; } });
-      links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+current); });
-    },{rootMargin:'-45% 0px -50% 0px',threshold:0});
-    secs.forEach(function(sc){ io.observe(sc); });
+  // ---- páginas: cada título do menu abre uma página (#inicio, #sobre, #metodo, #trajetoria, #erp, #contato)
+  var pgs=Array.prototype.slice.call(document.querySelectorAll('.pg'));
+  var menuLinks=Array.prototype.slice.call(document.querySelectorAll('#nav a[href^="#"]')).filter(function(a){return !a.classList.contains('btn');});
+  html.classList.add('pages');
+  function showPage(id){
+    if(html.getAttribute('data-pg')!==id){ document.querySelectorAll('video').forEach(function(v){ try{ v.pause(); }catch(e){} }); }
+    html.setAttribute('data-pg',id);
+    pgs.forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-pg')===id); });
+    menuLinks.forEach(function(a){ var on=a.getAttribute('href')==='#'+id; a.classList.toggle('active',on); if(on){ a.setAttribute('aria-current','page'); if(a.scrollIntoView&&window.innerWidth<=1160){ try{ a.scrollIntoView({block:'nearest',inline:'center'}); }catch(e){} } } else { a.removeAttribute('aria-current'); } });
   }
+  function route(){
+    var h=(location.hash||'').slice(1), el=h&&h!=='en'&&h!=='pt'?document.getElementById(h):null;
+    if(!el){ showPage(html.getAttribute('data-pg')||'inicio'); if(!h||h==='en'||h==='pt'){ window.scrollTo(0,0); } onScroll(); return; }
+    var w=el.closest('.pg');
+    if(!w){ window.scrollTo({top:0,behavior:'smooth'}); return; }      // #topo: volta ao topo da página atual
+    var id=w.getAttribute('data-pg');
+    showPage(id);
+    if(h===id){ window.scrollTo(0,0); } else { requestAnimationFrame(function(){ el.scrollIntoView(); }); }
+    onScroll();
+  }
+  window.addEventListener('hashchange',route);
+  document.addEventListener('click',function(e){ var a=e.target.closest('a[href^="#"]'); if(a&&a.getAttribute('href')===location.hash){ e.preventDefault(); route(); } });
+  window.addEventListener('beforeprint',function(){ html.classList.remove('pages'); });
+  window.addEventListener('afterprint',function(){ html.classList.add('pages'); });
+  route();
   function menuLabel(open){ var l=html.getAttribute('data-lang'); btn.innerHTML=(open?STR[l].close+' <span aria-hidden="true">✕</span>':STR[l].menu+' <span aria-hidden="true">☰</span>'); }
   btn.addEventListener('click',function(){ var open=nav.classList.toggle('open'); btn.setAttribute('aria-expanded',open?'true':'false'); menuLabel(open); if(open){header.classList.add('scrolled');} else {onScroll();} });
   function closeMenu(){ if(nav.classList.contains('open')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); menuLabel(false); onScroll(); } }
@@ -1083,7 +1144,7 @@ body.review .totop{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
 </script>
 <script>
 // Duração calculada no carregamento para cargos em andamento (data-since="AAAA-MM")
-document.querySelectorAll('[data-since]').forEach(function(el){var p=el.getAttribute('data-since').split('-'),n=new Date(),m=(n.getFullYear()-p[0])*12+(n.getMonth()+1-p[1])+1;// conta o mês inicial, como o LinkedInif(m<1)return;var y=Math.floor(m/12),r=m%12;var pt=(y?y+(y>1?' anos':' ano'):'')+(y&&r?' · ':'')+(r?r+(r>1?' meses':' mês'):'');var en=(y?y+(y>1?' yrs':' yr'):'')+(y&&r?' · ':'')+(r?r+(r>1?' mos':' mo'):'');el.querySelector('[lang="pt-BR"]').textContent=pt;el.querySelector('[lang="en"]').textContent=en;});
+document.querySelectorAll('[data-since]').forEach(function(el){var p=el.getAttribute('data-since').split('-'),n=new Date(),m=(n.getFullYear()-p[0])*12+(n.getMonth()+1-p[1])+1;/* conta o mês inicial, como o LinkedIn */if(m<1)return;var y=Math.floor(m/12),r=m%12;var pt=(y?y+(y>1?' anos':' ano'):'')+(y&&r?' · ':'')+(r?r+(r>1?' meses':' mês'):'');var en=(y?y+(y>1?' yrs':' yr'):'')+(y&&r?' · ':'')+(r?r+(r>1?' mos':' mo'):'');el.querySelector('[lang="pt-BR"]').textContent=pt;el.querySelector('[lang="en"]').textContent=en;});
 </script>
 <script>addEventListener("beforeprint",()=>document.querySelectorAll("details.more").forEach(d=>d.open=true));</script>
 </body>
